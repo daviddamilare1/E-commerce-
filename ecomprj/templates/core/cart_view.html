@@ -1,0 +1,158 @@
+{% extends "partials/base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+
+    {% if clear_cart %}
+        <script>
+            // Clear client-side cart data
+            localStorage.removeItem('cartItems');
+            localStorage.removeItem('cartId');
+            // Update button states
+            $(document).ready(function() {
+                $('.add_to_cart').html('Add to cart <i class="fas fa-shopping-cart ms-2"></i>');
+            });
+        </script>
+    {% endif %}
+
+    <section class="middle">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="sec_title position-relative text-center">
+                        <h3 class="ft-bold pt-3">Cart</h3>
+                    </div>
+                </div>
+            </div>
+
+            <form action="{% url 'core:create_order' %}" method="POST"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h4 class="fw-bold p-3">Cart items</h4>
+                        <div style="overflow-y: scroll; max-height: 650px; overflow-x: hidden" class="p-3">
+
+                            {% for i in items %}
+                                <div class="shadow rounded mb-3 item_div_{{i.id}}">
+                                    <div class="row d-flex align-items-center p-3">
+                                        <div class="col-lg-4 d-flex gap-3">
+                                            <a href="{% url 'core:details' i.product.slug %}"><img src="{{i.product.image.url}}" alt="" style="width: 100px; height: 100px; object-fit: cover" /></a>
+                                            <div class="p-2">
+                                                <h5>{{i.product.name}}</h5>
+                                                <p class="mb-0 mt-0">Price: ${{i.product.price|floatformat:2|intcomma}}</p>
+                                                <p class="mb-0 mt-0">Vendor: {{i.product.vendor.username}}</p>
+                                                <p class="mb-0 mt-0 color">Color: {{i.color|default:"Not selected"}}</p>
+                                                <p class="mb-0 mt-0 size">Size: {{i.size|default:"Not selected"}}</p>
+                                                <p class="mb-0 mt-0">Shipping: {{i.product.shipping}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <h4 class="fs-3">${{i.product.price|floatformat:2|intcomma}}</h4>
+                                        </div>
+                                        <div class="col-lg-2 d-flex">
+                                            <button class="btn bg-primary text-white btn-sm update_cart_qty" data-update_type="decrease" data-item_id="{{i.id}}" data-product_id="{{i.product.id}}">-</button>
+                                            <input type="text" class="form-control form-sm item-qty-{{i.id}}" value="{{i.qty}}" name="" id="" />
+                                            <button class="btn bg-primary text-white btn-sm update_cart_qty" data-update_type="increase" data-item_id="{{i.id}}" data-product_id="{{i.product.id}}">+</button>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <h4 class="fs-3 mb-0">$<span class="item_sub_total_{{i.id}}">{{i.sub_total|floatformat:2|intcomma}}</span></h4>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button class="btn bg-danger text-white btn-sm rounded delete_cart_item" data-item_id="{{i.id}}" data-product_id="{{i.product.id}}"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="p-3">
+                            <h4 class="fw-bold mb-3">Shipping Detail</h4>
+
+                            <div class="row">
+                                {% if request.user.is_authenticated %}
+                                    {% if addresses %}
+
+                                        {% for a in addresses %}
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+
+                                                <div class="card-wrap border rounded mb-4">
+                                                    <div class="card-wrap-header px-3 py-2 br-bottom d-flex align-items-center justify-content-between">
+                                                        <div class="card-heafder-flex">
+                                                            <h4 class="fs-md ft-bold mb-1">Shipping Address</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-wrap-body px-3 py-3">
+                                                        <p class="mb-0"><span class="fw-bold">Full Name: </span>{{a.full_name}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">Email: </span>{{a.email}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">Mobile: </span>{{a.mobile}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">Address: </span>{{a.address}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">City: </span> {{a.city}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">State: </span> {{a.state}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">Country: </span> {{a.country}}</p>
+                                                        <p class="mb-0"><span class="fw-bold">(Country)Zip Code: </span> {{a.zip_code}}</p>
+
+                                                        <div class="mt-3">
+                                                            <input id="address{{a.id}}" class="radio-custom" value="{{a.id}}" name="address" type="radio" />
+                                                            <label for="address{{a.id}}" class="radio-custom-label">Select Address</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        {% endfor %}
+
+                                    {% else %}
+                                            <div>
+                                                <a href="{% url 'customer:create_address' %}" class="btn btn-sm text-white bg-success small rounded ft-medium">Add Address <i class="fas fa-plus ms-1"></i></a>
+                                            </div>
+
+                                    {% endif %}
+                                {% else %}
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                                            <p class="text-danger bold">Login to add a delivery address before you Proceed to checkout.</p>
+                                        </div>
+                                        
+
+                                {% endif %}
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <h4 class="fw-bold">Order Summary</h4>
+                        <div class="shadow rounded p-3 mt-5">
+                            <div>
+                            
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="fw-semibold fs-6">Sub-total</p>
+                                        <p class="fs-6">$<span class="cart_sub_total">{{cart_sub_total|floatformat:2|intcomma}}</span></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="fw-semibold fs-6">Shipping</p>
+                                        <p class="fs-6">${{cart_shipping_total}}</p>
+                                    </div>
+                                    <!-- <div class="d-flex justify-content-between align-items-center">
+                                        <p class="fw-semibold fs-6">Tax</p>
+                                        <p class="fs-6">$2.99</p>
+                                    </div> -->
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <p class="fw-bold text-dark fs-5">Total</p>
+                                        <p class="fw-bold text-dark fs-5">$<span class="cart_sub_total">{{cart_sub_total|floatformat:2|intcomma}}</span></p>
+                                    </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center w-100 mt-3">
+                            <button type="submit" class="btn bg-primary rounded text-white w-100">Proceed To Checkout <i class="fas fa-arrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </section>
+
+{% endblock %}
