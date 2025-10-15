@@ -9,6 +9,9 @@ urlpatterns = [
         # Home Page
     path('', index, name='index'),
 
+        # CATEGORY DETAIL
+    path('category_detail/<slug>/', category_detail, name='category_detail'),
+
         # Product details
     path('product_details/<slug>/', product_details, name='details'),
         

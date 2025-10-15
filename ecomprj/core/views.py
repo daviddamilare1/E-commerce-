@@ -80,7 +80,7 @@ def cancel_order(request):
 
 ################################################################################################################ 
 
-
+ 
 
 
 
@@ -89,7 +89,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def index(request):
-    
+    category = Category.objects.all()
     products = Product.objects.filter(status='Published', featured=True)
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
@@ -107,8 +107,26 @@ def index(request):
     context = {
         'products': products,
         'wishlist_product_ids': wishlist_product_ids,
+        'category': category,
     }
     return render(request, 'core/index.html', context)
+
+
+
+def category_detail(request, slug):
+    category = Category.objects.get(slug=slug)
+    products = products = Product.objects.filter(status='Published', category=category)
+
+    context = {
+        'products': products,
+        'category': category,
+    }
+    return render(request, 'core/category_detail.html', context)
+
+
+
+
+
 
 
 

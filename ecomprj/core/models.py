@@ -116,7 +116,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images', null=True, blank=True, default='product.jpg')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
     desc = CKEditor5Field('Text', config_name='extends')
 
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00, null=True, blank=True, verbose_name="Sale Price")

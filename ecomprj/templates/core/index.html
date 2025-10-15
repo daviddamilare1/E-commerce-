@@ -53,20 +53,23 @@
                 </div>
 
                 <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
-                        <div class="cats_side_wrap text-center mx-auto mb-3">
-                            <div class="sl_cat_01">
-                                <div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border">
-                                    <a href="#" class="d-block">
-                                        <img src="{% static '...' %}" class="img-fluid" width="40" alt="" />
-                                    </a>
+                    {% for c in category %}
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-4">
+                            <div class="cats_side_wrap text-center mx-auto mb-3">
+                                <div class="sl_cat_01">
+                                    <div class="d-inline-flex align-items-center justify-content-center p-4 circle mb-2 border">
+                                        <a href="{% url 'core:category_detail' c.slug %}" class="d-block">
+                                            <img src="{{c.image.url}}" class="img-fluid" alt="" style="object-fit: cover; width: fit-content;" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sl_cat_02">
+                                    <h6 class="m-0 ft-medium fs-sm"><a href="#">{{c.title}}</a></h6>
                                 </div>
                             </div>
-                            <div class="sl_cat_02">
-                                <h6 class="m-0 ft-medium fs-sm"><a href="#">Category Title</a></h6>
-                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </section>
