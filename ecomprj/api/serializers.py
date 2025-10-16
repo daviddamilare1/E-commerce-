@@ -75,49 +75,19 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer(read_only=True)
-    sub_total = serializers.SerializerMethodField()
-    class Meta:
-        model = OrderItem
-        fields = [
-            # 'order',
-            # 'order_status',
-            # 'shipping_service',
-            # 'tracking_id',
-            'product',
-            'qty',
-            'color',
-            'size',
-            'price',
-            'sub_total',
-            'shipping',
-            'tax',
-            'total',
-            'initial_total',
-            'saved',
-            'coupon',
-            'applied_coupon',
-            'item_id',
-            'vendor',
-            # 'date',
-        ]
-
-
-        def get_sub_total(self, orderitem):
-            total = orderitem.product.price * orderitem.qty
-            return total
 
 
 
 
 
 class CartSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)
+    
     class Meta:
         model = Cart
         fields = [
             'product',
-            'user',
+            # 'user',
             'qty',
             'price',
             'sub_total',
@@ -129,3 +99,45 @@ class CartSerializer(serializers.ModelSerializer):
             'cart_id',
             # 'date',
         ]
+    
+
+
+    
+
+
+
+
+
+
+# class OrderItemSerializer(serializers.ModelSerializer):
+#     product = ProductSerializer(read_only=True)
+#     sub_total = serializers.SerializerMethodField()
+#     class Meta:
+#         model = OrderItem
+#         fields = [
+#             # 'order',
+#             # 'order_status',
+#             # 'shipping_service',
+#             # 'tracking_id',
+#             'product',
+#             'qty',
+#             'color',
+#             'size',
+#             'price',
+#             'sub_total',
+#             'shipping',
+#             'tax',
+#             'total',
+#             'initial_total',
+#             'saved',
+#             'coupon',
+#             'applied_coupon',
+#             'item_id',
+#             'vendor',
+#             # 'date',
+#         ]
+
+
+        # def get_sub_total(self, orderitem):
+        #     total = orderitem.product.price * orderitem.qty
+        #     return total
