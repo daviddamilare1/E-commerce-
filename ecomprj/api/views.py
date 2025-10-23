@@ -150,7 +150,7 @@ def add_to_cart(request):
     cart_sub_total = Cart.objects.filter(cart_id=cart_id).aggregate(sub_total = models.Sum("sub_total"))['sub_total']
    
     all_cart_items = CartSerializer(total_cart_items, many=True).data
-    # cart_total = Cart.objects.filter(cart_id=cart_id).aggregate(total = models.Sum("total"))['total']
+    cart_total = Cart.objects.filter(cart_id=cart_id).aggregate(total = models.Sum("total"))['total']
 
    
     return Response({
