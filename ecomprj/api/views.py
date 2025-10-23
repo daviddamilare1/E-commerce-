@@ -84,7 +84,7 @@ def add_to_cart(request):
         color = i.get('color')
         size = i.get('size')
 
-        # request.session['cart_id'] = cart_id
+       
 
         if not id or not qty or not cart_id:
             return Response({'error': ' No id, qty or cart_id'}, status=400)
@@ -119,8 +119,9 @@ def add_to_cart(request):
             cart.cart_id = cart_id
             cart.save()
 
-
             message = 'Item added to cart'
+            serialized_items = CartSerializer(cart).data
+
 
         else:
             existing_cart_items.product = product
@@ -136,25 +137,29 @@ def add_to_cart(request):
             existing_cart_items.save()
 
             message = 'Cart updated'
+            serialized_items = CartSerializer(existing_cart_items).data
         
         responses.append({
             'id': id,
             'message': message,
-            'item_sub_total': "{:,.2f}".format(existing_cart_items.sub_total) if existing_cart_items else"{:,.2f}".format(cart.sub_total),
-            'cart_item': CartSerializer(cart).data
+            'item_sub_total': "{:,.2f}".format(Decimal(serialized_items['sub_total'])),
+            'cart_item': serialized_items
         })
         
     total_cart_items = Cart.objects.filter(cart_id=cart_id)
     cart_sub_total = Cart.objects.filter(cart_id=cart_id).aggregate(sub_total = models.Sum("sub_total"))['sub_total']
+   
     all_cart_items = CartSerializer(total_cart_items, many=True).data
+    # cart_total = Cart.objects.filter(cart_id=cart_id).aggregate(total = models.Sum("total"))['total']
 
-    # serializer = CartSerializer(cart)
+   
     return Response({
-        'items': responses,
+        'processed_response': responses,
         'message': 'Processed all cart items',
         'total_cart_items': total_cart_items.count(),
         'all_cart_items': all_cart_items,
         'cart_sub_total': "{:,.2f}".format(cart_sub_total), # Appends comas and decimals at the end if the digits gets too long (e.g 432,133,955.50)
+        # 'cart_total': "{:,.2f}".format(cart_total) 
         
         
         })
