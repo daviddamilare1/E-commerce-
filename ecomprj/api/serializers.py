@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from core.models import *
+from userauths.models import User
 
 
 
@@ -80,27 +81,87 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 
 
+# class CartSerializer(serializers.ModelSerializer):
+#     product = ProductSerializer(read_only=True)
+    
+#     class Meta:
+#         model = Cart
+#         fields = [
+#             'product',
+#             # 'user',
+#             'qty',
+#             'price',
+#             'sub_total',
+#             'shipping',
+#             'tax',
+#             'total',
+#             'size',
+#             'color',
+#             'cart_id',
+#             # 'date',
+#         ]
+    
+
+
 class CartSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
-    
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), source='product', write_only=True
+    )
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(), allow_null=True
+    )
+
     class Meta:
         model = Cart
         fields = [
-            'product',
-            # 'user',
-            'qty',
-            'price',
-            'sub_total',
-            'shipping',
-            'tax',
-            'total',
-            'size',
-            'color',
-            'cart_id',
-            # 'date',
+            'id', 'product', 'product_id', 'user', 'qty', 'price', 'sub_total',
+            'shipping', 'tax', 'total', 'size', 'color', 'cart_id', 'date'
         ]
-    
+        read_only_fields = ['sub_total', 'total', 'date', 'price']
 
+    def validate(self, data):
+        """
+        Validate the cart data, ensuring qty is non-negative.
+        """
+        if data.get('qty', 0) < 0:
+            raise serializers.ValidationError("Quantity cannot be negative.")
+        return data
+
+    def create(self, validated_data):
+        """
+        Create a new cart instance, calculating sub_total and total.
+        """
+        product = validated_data['product']
+        qty = validated_data['qty']
+        cart = Cart.objects.create(
+            **validated_data,
+            price=product.price,
+            sub_total=product.price * qty,
+            shipping=product.shipping * qty,
+            total=(product.price * qty) + (product.shipping * qty) + validated_data.get('tax', 0)
+        )
+        return cart
+
+    def update(self, instance, validated_data):
+        """
+        Update cart instance, recalculating sub_total and total.
+        """
+        product = validated_data.get('product', instance.product)
+        qty = validated_data.get('qty', instance.qty)
+        instance.product = product
+        instance.user = validated_data.get('user', instance.user)
+        instance.qty = qty
+        instance.price = product.price
+        instance.shipping = product.shipping * qty
+        instance.tax = validated_data.get('tax', instance.tax)
+        instance.size = validated_data.get('size', instance.size)
+        instance.color = validated_data.get('color', instance.color)
+        instance.cart_id = validated_data.get('cart_id', instance.cart_id)
+        instance.sub_total = product.price * qty
+        instance.total = instance.sub_total + instance.shipping + instance.tax
+        instance.save()
+        return instance
 
     
 

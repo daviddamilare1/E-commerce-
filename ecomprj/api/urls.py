@@ -23,4 +23,9 @@ urlpatterns = [
 
             # ADD TO CART
     path('add_to_cart/', add_to_cart, name='add_to_cart' ), 
+
+             # UPDATE CART
+    path('update_cart_quantity/', update_cart_quantity, name='update_cart_quantity' ), 
+
+
 ]    
