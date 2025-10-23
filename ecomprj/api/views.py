@@ -146,12 +146,14 @@ def add_to_cart(request):
         
     total_cart_items = Cart.objects.filter(cart_id=cart_id)
     cart_sub_total = Cart.objects.filter(cart_id=cart_id).aggregate(sub_total = models.Sum("sub_total"))['sub_total']
+    all_cart_items = CartSerializer(total_cart_items, many=True).data
 
     # serializer = CartSerializer(cart)
     return Response({
         'items': responses,
         'message': 'Processed all cart items',
         'total_cart_items': total_cart_items.count(),
+        'all_cart_items': all_cart_items,
         'cart_sub_total': "{:,.2f}".format(cart_sub_total), # Appends comas and decimals at the end if the digits gets too long (e.g 432,133,955.50)
         
         
