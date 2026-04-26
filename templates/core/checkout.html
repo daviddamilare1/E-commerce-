@@ -1,0 +1,301 @@
+{% extends "partials/base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+    <section class="middle">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="sec_title position-relative text-center">
+                        <h3 class="ft-bold pt-3">Checkout</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <h4 class="fw-bold p-3">Cart items</h4>
+                    <div style="overflow-y: scroll; max-height: 650px; overflow-x: hidden" class="p-3">
+                        {% for o in order.order_items.all %}
+                            <div class="shadow rounded mb-3">
+                                <div class="row d-flex align-items-center p-3">
+                                    <div class="col-lg-4 d-flex gap-3">
+                                        <img src="{{o.product.image.url}}" alt="" style="width: 100px; height: 100px; object-fit: cover" />
+                                        <div class="p-2">
+                                            <h5>{{o.product.name}}</h5>
+                                            <p class="mb-0 mt-0">Price: ${{o.product.price|floatformat:2|intcomma}}</p>
+                                            <p class="mb-0 mt-0">Vendor: {{o.product.vendor.username}}</p>
+                                            <p class="mb-0 mt-0">Color: {{o.color|default:"Not selected"}}</p>
+                                            <p class="mb-0 mt-0">Size: {{o.size|default:"Not selected"}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <p class="mb-1">Price</p>
+                                        <h4 class="fs-3">${{o.product.price|floatformat:2|intcomma}}</h4>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <p class="mb-1">Qty</p>
+                                        <h4 class="fs-3 mb-0">{{o.qty}}</h4>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <p class="mb-1">Price</p>
+                                        <h4 class="fs-3 mb-0">${{o.sub_total|floatformat:2|intcomma}}</h4>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="{% url 'core:cart_view' %}" class="btn bg-primary text-white btn-sm rounded"><i class="fas fa-edit"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="p-3">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                                <div class="card-wrap border rounded mb-4">
+                                    <div class="card-wrap-header px-3 py-2 br-bottom d-flex align-items-center justify-content-between">
+                                        <div class="card-heafder-flex">
+                                            <h4 class="fs-md ft-bold mb-1">Shipping Address</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-wrap-body px-3 py-3">
+                                        <p class="mb-0"><span class="fw-bold">Full Name: </span>{{order.address.full_name}}</p>
+                                        <p class="mb-0"><span class="fw-bold">Email: </span>{{order.address.email}}</p>
+                                        <p class="mb-0"><span class="fw-bold">Mobile: </span>{{order.address.mobile}}</p>
+                                        <p class="mb-0"><span class="fw-bold">Address: </span>{{order.address.address}}</p>
+                                        <p class="mb-0"><span class="fw-bold">City: </span> {{order.address.city}}</p>
+                                        <p class="mb-0"><span class="fw-bold">State: </span> {{order.address.state}}</p>
+                                        <p class="mb-3"><span class="fw-bold">Country: </span> {{order.address.country}}</p>
+                                        <a href="{% url 'customer:address_details' order.address.id %}" style="color: #5B1CEE;">Change Shipping Address <i class="fas fa-edit ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="shadow rounded p-3">
+                        <h4 class="fw-bold">Order Summary</h4>
+
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold fs-6">Sub-total</p>
+                                <p class="fs-6">${{order.sub_total|floatformat:2|intcomma}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold fs-6">Shipping</p>
+                                <p class="fs-6">${{order.shipping|floatformat:2|intcomma}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold fs-6">Service Fee</p>
+                                <p class="fs-6">${{order.service_fee|floatformat:2|intcomma}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold fs-6">Tax</p>
+                                <p class="fs-6">${{order.tax|floatformat:2|intcomma}}</p>
+                            </div>
+
+                            {% if order.saved %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="fw-semibold fs-6">Discount</p>
+                                    <p class="fs-6">${{order.saved|floatformat:2|intcomma}}</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="fw-semibold fs-6">Initial Total</p>
+                                    <p class="fs-6">${{order.initial_total|floatformat:2|intcomma}}</p>
+                                </div>
+
+                                {% for c in order.coupons.all %}
+                                    <small class="text-success fw-bold">{{c.code}} Applied</small>
+                                {% endfor %}
+                            {% endif %}
+
+
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <p class="fw-bold text-dark fs-5">Total</p>
+                                <p class="fw-bold text-dark fs-5">${{order.total|floatformat:2|intcomma}}</p>
+                            </div>
+
+                                <!-- Cancel order -->
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <a href="{% url 'core:cancel_order' %}" class="btn bg-danger py-2 px-4 rounded text-white">Cancel Order <i class="fas fa-trash ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow rounded p-3 mt-3">
+                        <h4 class="fw-bold">Coupons</h4>
+                        <form method="POST" action="{% url 'core:apply_coupon' order.oid %}" class="mb-3 d-flex">
+                            {% csrf_token%}
+                            <input type="text" class="form-control" name="code" id="code" value="" placeholder="Coupon Code" />
+                            <button type="submit" class="btn bg-secondary text-white"><i class="fas fa-check-circle"></i></button>
+                        </form>
+                    </div>
+                            <!-- Payment Buttons -->
+                    <div class="w-100 mt-3">
+                        <h4 class="fw-bold">Select Payment Method</h4>
+
+                            <!-- Stripe -->
+                        <button type="submit" id="stripe-payment" class="btn bg-primary rounded text-white w-100 mb-3"><img style="width: 100px; height: 25px; object-fit: cover;" src="https://www.kaliop.com/app/uploads/2022/03/5842a8e9a6515b1e0ad75b01.png" alt=""></button>
+                            
+                            <!-- Paystack -->
+                        <button type="button" id="paystack-payment" onclick="payWithPaystack()" class="btn rounded text-primary fw-bold w-100 mb-3 payment-btn-paystack" style="background-color: #bce6f6;">
+                            <img style="width: 100px; height: 30px; object-fit: cover;" src="{% static 'assets/paystack.png' %}" alt="">
+                        </button>
+
+                                <!-- Flutterwave -->
+                            <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                                <input type="hidden" name="public_key" value="{{ flutterwave_public_key }}" />
+                                <input type="hidden" name="customer[email]" value="{{ order.address.email }}" />
+                                <input type="hidden" name="customer[name]" value="{{ order.address.full_name }}" />
+                                <input type="hidden" name="tx_ref" value="{{order.oid}}" />
+                                <input type="hidden" name="amount" value="{{ order.total }}" />
+                                <input type="hidden" name="currency" value="USD" />
+                                <input type="hidden" name="redirect_url" value="https://1ee3e9359f29.ngrok-free.app/flutterwave_payment_callback/{{ order.oid }}/?payment_method=Flutterwave" />
+                                <input type="hidden" name="meta[source]" value="docs-html-test" />
+                                <button type="submit" id="start-payment-button" class="btn rounded text-primary fw-bold w-100 mb-3 payment-btn-flutterwave" style="background-color: #e8d3c4;">
+                                    <img style="width: 250px; height: 40px; object-fit: contain;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flutterwave_Logo.png/1200px-Flutterwave_Logo.png" alt="">
+                                </button>
+                            </form>
+
+
+
+                            <!-- RazorPay -->
+
+                        
+
+                            <!-- Paypal -->
+                        <!-- <div id="paypal-button-container"></div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ###################################### PAYMENT INTEGRATIONS #############################################-->
+            <!-- The cdns -->
+        <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://js.paystack.co/v1/inline.js"></script>
+        <script src="https://checkout.flutterwave.com/v3.js"></script>
+
+
+
+        <!-- Stripe -->
+        <script>
+            var stripe = Stripe("{{stripe_public_key}}"); // Replace with your actual Stripe public key
+            var checkoutButton = document.getElementById("stripe-payment");
+
+            try {
+                checkoutButton.addEventListener("click", function () {
+                    var email = "{{order.address.email}}"; // Replace with the user's email
+
+                    checkoutButton.innerHTML = "Processing <i class='fas fa-spinner fa-spin'></i>";
+
+                    fetch("/stripe_payment/{{order.oid}}/", {
+                        // Replace with your actual order ID
+                        method: "POST",
+                        body: JSON.stringify({ email: email }),
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                            console.log(stripe);
+                            return response.json();
+                        })
+                        .then(function (session) {
+                            return stripe.redirectToCheckout({ sessionId: session.sessionId });
+                        })
+                        .then(function (result) {
+                            if (result.error) {
+                                alert(result.error.message);
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log("Error: ", error);
+                        });
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        </script>
+
+
+        <!-- PayPal -->
+        <script>
+            function initPayPalButton() {
+                paypal
+                    .Buttons({
+                        style: {
+                            shape: "rect",
+                            color: "gold",
+                            layout: "vertical",
+                            label: "paypal",
+                        },
+
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: [
+                                    {
+                                        amount: {
+                                            currency_code: "USD",
+                                            value: "{{order.total}}", // Replace with the actual order total
+                                        },
+                                    },
+                                ],
+                            });
+                        },
+
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (orderData) {
+                                // Full available details
+                                console.log("Capture result", orderData, JSON.stringify(orderData, null, 2));
+
+                                // Show a success message within this page, for example:
+                                const element = document.getElementById("paypal-button-container");
+                                element.innerHTML = "";
+                                element.innerHTML = "<h5>Verifying payment...</h5>";
+                                window.location.href = `/paypal_payment_verify/{{order.oid}}/?transaction_id=${orderData.id}`; // Replace with your actual order ID
+
+                                // Or go to another URL:  actions.redirect('thank_you.html');
+                            });
+                        },
+
+                        onError: function (err) {
+                            console.log(err);
+                        },
+                    })
+                    .render("#paypal-button-container");
+            }
+            initPayPalButton();
+        </script>
+
+        <!-- Paystack -->
+        <script type="text/javascript">
+            function payWithPaystack(){
+                var handler = PaystackPop.setup({
+                    key: '{{paystack_public_key}}',
+                    email: '{{order.address.email}}',
+                    amount: '{{amount_in_kobo}}', 
+                    currency: "NGN",
+                    ref: '' + Math.floor((Math.random() * 1000000000) + 1), 
+                    callback: function(response){
+                        window.location.href = '/paystack_payment_verify/{{ order.oid }}/?reference=' + response.reference + "&payment_method=Paystack";
+                    },
+                    onClose: function(){
+                        alert('Payment window closed');
+                    }
+                });
+                handler.openIframe();
+            }
+        </script>
+    <!-- #################################################################################################################### -->
+
+
+{% endblock %}
+

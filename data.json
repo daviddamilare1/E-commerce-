@@ -1,0 +1,1420 @@
+
+[
+{
+    "model": "sessions.session",
+    "pk": "1j5z1ezp2qnf48l1hw7darmeo2xhy22z",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiNjMwNDc1MjIzMCJ9:1umDFJ:YGee3SNAE6Iw5-6ftp-3hmo14aRmL6lJKg-dAQTWKb4",
+        "expire_date": "2025-08-27T15:18:33.292Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2gvzdrfcqqhowiathv266jtkrjh35014",
+    "fields": {
+        "session_data": ".eJxVjksOwjAMRO-SNYqcOIlTluw5Q-XGLi2gVupnhbg7regCtjNvnuZlal6Xrl5nnepezNk4c_rNGi4PHfZC7jzcRlvGYZn6xu6IPdrZXkfR5-Vg_wQdz922Rg2BMzFQdlEracEFLtljieKrrNFJiuh9QgolAUELWoikjQ3sm01aeFq-HzNBThUmRPP-APxrPLs:1uopHI:KB3_ioHVDRxG5dyDkZS6kU2UcNh71u1WrGCYo_2hx2Y",
+        "expire_date": "2025-09-03T20:19:24.664Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "3s7l369utxn5oufx3ut1ohpkc8xkz1w8",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiNDEwMzI2MDMxNyJ9:1uoWB0:1m-tWaSFwfulk35QjtdzsGmzDSfCnLmbJZgMci1tDv4",
+        "expire_date": "2025-09-02T23:55:38.545Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5e282bl2iygf9h9v93wxyljut1idv49v",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG8oS7d-w1kYAapGpqUdmX8dyXpQrf3nHNfLMK-1bh3WuOM7MwkO_1uCfKD2gB4h3ZbeF7ats6JD4UftPPrgvS8HO7fQYVev7UmYyB4ED5ISxMWIQ3koHS2qKZAVqKzWimnvclOeFEEZe-x2CRGw94fxRw24g:1wFx92:k1fVh-cen48CXebSP4zPnZSTNttI97J0KjFcEAr-yUY",
+        "expire_date": "2026-05-07T16:43:16.539Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "689fnjl2zpvxmquot8rge9f672bqdlph",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiMzgyNTYxOTQxNSJ9:1ucaWW:dZF30TTnAuzqtvkWWf9kzpVgKWfOZW29rDl0LGbpA2U",
+        "expire_date": "2025-08-01T02:08:32.968Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "7amaftxacysmxr2xrey0kieer1xkjxd6",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ucaO5:yzVmw3taW2tW5iyOSH91kud_FClpcdW_YsDCMIneGoQ",
+        "expire_date": "2025-08-01T01:59:49.882Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "7dqujvtxkc413g4eb7cw37e7af4dtvlu",
+    "fields": {
+        "session_data": ".eJxVjjsOwjAQRO_iGln-r0NJzxmi9e6aBFAi5VMh7k4iUkA78-ZpXqrFdenadZap7VmdlVWn36wgPWTYC77jcBs1jcMy9UXviD7aWV9HluflYP8EHc7dtvYSAmZAA9lGabgaG5Cy8xTZNVmi5RS9c8lDoGTAVCMEwDUWs282KeG0fD82LjoIAXJS7w_8STy8:1wECBB:UNgYvlrdbBrRsRCauirJ_MeanBF-2224rLISofqi3zM",
+        "expire_date": "2026-05-02T20:22:13.553Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "aesu211hlbifxf3sns19on3w78s8evuw",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiNDU0NzIzMTk5OCJ9:1wECMb:4GOPr4VSJc76RKMYGqJy6O_sZ_CNutU3Su2E0LHjZhA",
+        "expire_date": "2026-05-02T20:34:01.169Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b7keqxzkiim684lkaan41d1he2r83n4y",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ubp1I:AJLLqoVFUgXBdypyXOzWkrXBb5q2adkoBDm0eWsfHsY",
+        "expire_date": "2025-07-29T23:25:08.152Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fkbqvtp38ugcmxvoaoraypobr6j1qzwu",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xg4lPWeINrsbEohsyY4rxN0hKE3aeTPvLRDKNiwkrqmt60UM0LZ5aJXLHwotTmwEfHHaB3pCemSJOW1lGeWuyGOt8p6J19vhng5mqPOvtuwcxAAqRO25p0lpBxiNRU-mj-w1dd4a09ngsFNBTYoxBJr8qPZGfL5vhjwd:1uoXvX:u36wc5sFlOKtZPOGMoeEsTCiU_s6pJqx_PELhMypRZQ",
+        "expire_date": "2025-09-03T01:47:47.643Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "g1zpvyuhqcwqks8flkpssue1no8xbf1h",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlmJHa8dSvqcIXr2LjiAbCmfCnF3iJQC2jcz76VGbGset0XmcWJ1Vk6dfreI9JCyA76j3KpOtazzFPWu6IMueqgsz8vh_h1kLPlbe9eBPYlF6omJTArJgZrYQqRlYmthTWiYTMSVvKU-eG_AcGIodur9Ae5zOAU:1wH6pi:0tb4X7XdlekHmpRuuSv0_H-1XGGaFvuiqf6rugs_8Ew",
+        "expire_date": "2026-05-10T21:16:06.903Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "h9hwamt7edd6v1qq8d2mi4reti5f5e6m",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHhNVCX7v0GMgyDVA0kpV0Z_12bdKHbe865LxFxW2vcBi9xzuIslDj9bgnpwW0H-Y7t1iX1ti5zkrsiDzrktWd-Xg7376DiqN-aLTiriT2jDawm8MUo0gqSK4XRWe8sB2VAFw2BCyJMRCXlTMZ5QvH-AOf5OKM:1ujLYm:_ZitBkCdmsXrADCCEmcNyT240pneE36Pjg7JvsB17pA",
+        "expire_date": "2025-08-19T17:34:48.631Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "j0a8xcaq6hr6apgxjbxinnrgcvf77gtz",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHCwEBduvcbmmEYpGpo0sfK-O_a2E2395xz34ppWvohq4tyERDO4BHUSfW0LrVfZ5n-0By3RPyUtoH8oHYfNY9tmYakN0XvdNa3McvruruHg0pz_dXi0DvLEoRcFNNhKGDYGky-FCHvgncSDaAtFqMUIuyYS8qZwQcm9fkCHR4-cA:1ucZwW:0uQ85goHuHHyDP0pLiNNkk1EXdejTnxnTGEDqKz5IKs",
+        "expire_date": "2025-08-01T01:31:20.067Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jslicf9b5sgyuwi8ypt2oqd9nqlwocih",
+    "fields": {
+        "session_data": ".eJxVjEEOgjAQRe_StWlo7bRTl-49A5nODIIaSCisjHdXIhu2_73334ZpXtpBzMVAkwAchozmZFpal75dq85_GI9bIX7quAF50HifLE_jMg_FbordabW3SfR13d3DQU-1_9WK4BsOgQmi84g5N6wONWcRLxCTY40lQDqrL-pKl6IkyoxaqCsE5vMFGNw-Uw:1umxFb:ii58OoL36XQcolkqR20K6zKFBiUPcceTS0sBRUqU7Hc",
+        "expire_date": "2025-08-29T16:25:55.965Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jsn7c2h8vx18i0kw9oojfh5dt6rftj66",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHhNVCX7v0GMgyDVA0kpV0Z_12bdKHbe865LxFxW2vcBi9xzuIslDj9bgnpwW0H-Y7t1iX1ti5zkrsiDzrktWd-Xg7376DiqN-aLTiriT2jDawm8MUo0gqSK4XRWe8sB2VAFw2BCyJMRCXlTMZ5QvH-AOf5OKM:1ua51B:08BfNOYymejodGBGANJCFC2sl6Z6veZ_wWTbIEbtNDY",
+        "expire_date": "2025-07-25T04:05:49.721Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "klpo7x4gb8tt7x0dsg6nby280l87wh8q",
+    "fields": {
+        "session_data": "e30:1ulUMv:jsl0mPyNpJBxcDlAiH6R5VRtgBuCEIMhmiabUU1Oq_8",
+        "expire_date": "2025-08-25T15:23:25.267Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "noh15rt29h2lqid6ku55o5de2rvcf7qw",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ucD1c:EuA8e4MKI4hqqSwK1EfhUOLTqd3dan9x1a0t7iWxGp0",
+        "expire_date": "2025-07-31T01:03:04.146Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ofole2ppx527vtecj3x5s0rq7qjnz76q",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjpudWxsfQ:1umDmn:I-tYbewabBs-DJjH1KEONlnwEurCgO0TU-pQFizpyFA",
+        "expire_date": "2025-08-27T15:53:09.576Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ogs6n2wgkip9f2tl2yb9pxi9evvbzhj5",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ugUTl:n0pYSMcVDfeuCMxnaW-GgP4Byuvuqfq7ELbtP6Zm26Q",
+        "expire_date": "2025-08-11T20:29:49.440Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "pty7p7s2z66327khbk6j3nnl7162ypfj",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHhNVCX7v0GMgyDVA0kpV0Z_12bdKHbe865LxFxW2vcBi9xzuIslDj9bgnpwW0H-Y7t1iX1ti5zkrsiDzrktWd-Xg7376DiqN-aLTiriT2jDawm8MUo0gqSK4XRWe8sB2VAFw2BCyJMRCXlTMZ5QvH-AOf5OKM:1ucCwU:96i8TSc6biWkaZ45k545eBCkH2h7sikP7pUdoPMTxgM",
+        "expire_date": "2025-07-31T00:57:46.433Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "q12arpvxxx1pn1w3kxy7uta0hh56g88l",
+    "fields": {
+        "session_data": ".eJxVjrFuxCAQRP-FOoIFgxe7TJ9vQHjBgdzJnDCkifLvwcoViaabNzOaL-Z8b8n1M1aXA1uZZC9_vc3TLR4XCB_-eC-cytFq3vgV4U968rcS4v31mf03kPyZRnuKWnuLHtBKE5ewg9SerJrIBLXYaGSYzaTUPKGmGRB2iIQYdrPB1Rmj5Gv7_bgoo1BrtPOwHzV-5tJP1-t9sNTaYxVCKuQwJFcLAIJSpFvpTZQcXCZTsmDfPySpTz8:1vE3h1:V_GS-xc3VJUJUV6tqU9Bo0Ef7ukiDs7kcQxGOtUf7hU",
+        "expire_date": "2025-11-12T10:46:15.824Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "r4hlihsrca3ejrfe0foin0zdcc3qn1h2",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ubp43:s4sAoN1NtiYwyjutTbJNmfKJ0Q-H8AMe4nftFyNkyTo",
+        "expire_date": "2025-07-29T23:27:59.072Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ruf4dz8kyx07iyofdpphimcysqsdmjpb",
+    "fields": {
+        "session_data": ".eJxVjDsOgzAQBe-ydWT5i03K9JzBWu8ugSQCCUMV5e4JCg3tm5n3BsJlzSPDFbCQsQ4ukHFbh7xVWf7AnLeC9JRpB_zA6T4rmqd1GYvaFXXQqrqZ5XU73NPBgHX41U68xxRRx2SCtNxr45GSdRTYtkmC4SY4axsXPTU66l4Lxch9KHpv4PMFslY8Yg:1v9WNz:lFarbqkp5mn7ijdRpO93ZugXkmOWgm4NG5pQI6r9BkU",
+        "expire_date": "2025-10-30T22:23:51.486Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ry2thq8wwdptulrizujvpuwoil21glsk",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiMjQ5MDEwMDkxNCJ9:1umBdv:RJJxLuz40zlwqvPk6fXu8kr8rW9BBAYBd-UkqbBZwNM",
+        "expire_date": "2025-08-27T13:35:51.129Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "u1z7pjs07tkgds5wys3zqp8ephhvpq81",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlmJHa8dSvqcIXr2LjiAbCmfCnF3iJQC2jcz76VGbGset0XmcWJ1Vk6dfreI9JCyA76j3KpOtazzFPWu6IMueqgsz8vh_h1kLPlbe9eBPYlF6omJTArJgZrYQqRlYmthTWiYTMSVvKU-eG_AcGIodur9Ae5zOAU:1wH3HT:i0gnUFpqLGtFrf5S8K4VhWmNGStOwnU-Cts0EwKuhjs",
+        "expire_date": "2026-05-10T17:28:31.949Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "u5cc2yrw0p5ekr0kb9580s88d2qyhkou",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlmJHa8dSvqcIXr2LjiAbCmfCnF3iJQC2jcz76VGbGset0XmcWJ1Vk6dfreI9JCyA76j3KpOtazzFPWu6IMueqgsz8vh_h1kLPlbe9eBPYlF6omJTArJgZrYQqRlYmthTWiYTMSVvKU-eG_AcGIodur9Ae5zOAU:1umEbq:3HyabhDopgmk3OZ8L-mMgp65c6ZR0ZjO2KCJYNRDJZg",
+        "expire_date": "2025-08-27T16:45:54.804Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uytymuvfu00svleehufuk538pgmbbsdz",
+    "fields": {
+        "session_data": ".eJxVjs0OgjAQhN-lZ9PAtt2CR-88A5l2V0ENJPycjO8uRA56nW_my7xMi3Xp2nXWqe3FnE0wp98sIT902IHcMdxGm8dhmfpk94o96GybUfR5Obp_gg5zt61j8JDI6pBrFmbKVQ7gIpVQLYXFOTiqCmFKuHJ0XFcxEgRBiZPfpBnT8v3oXckcAlFt3h8_fD3U:1umDSf:fXxPyiAL5hlE-Gj3W3pGpWVikmwJPfUlbgeFw5cgB8g",
+        "expire_date": "2025-08-27T15:32:21.500Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "v5l08qulj8hvxkzef8eo55i4zh44vcng",
+    "fields": {
+        "session_data": "e30:1ulUH5:OLo0eRKNI4TiwN5D5Z-r8r1ovUl_ZAQpRdLMthrEOj0",
+        "expire_date": "2025-08-25T15:17:23.656Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "w7aglosafp71uy3mumgt2x5zjs18vej2",
+    "fields": {
+        "session_data": ".eJxVjsEOgjAQRP-lZ9PYbrstHr3zDWS73QpqIKFwMv67EDnodd7My7xUR-vSd2uVuRuyuiijTr9ZIn7IuIN8p_E2aZ7GZR6S3iv6oFW3U5bn9ej-CXqq_bYWh95ZliDkopgGQwHD1mDypQh5F7yTaABtsRilEGHDXFLODD4wbVKmefl-dBEQzuAR1PsDR0U-cA:1ucCob:xAvWoDwlnXsIHbrh9KZjQhWkZjRhQsgb4Y2__LMvkc8",
+        "expire_date": "2025-07-31T00:49:37.094Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "x5eg3bccrwjdz3tsnzi50yq724yuo2lv",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjoiNzYzNjg2Nzk2OCJ9:1uop6X:ZrLYdLSQmL9iQhx_B3d3ErOwHJmvAcjVvlQxwmrUl9I",
+        "expire_date": "2025-09-03T20:08:17.300Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "xm4ueg1qi5zgo70b3gavulgf2a8903pq",
+    "fields": {
+        "session_data": "eyJjYXJ0X2lkIjpudWxsfQ:1v9W4H:Onrj7gqyxXVIciIp4zQ4F92qteR1hYu4tz8nu1YjOoE",
+        "expire_date": "2025-10-30T22:03:29.335Z"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 1,
+    "fields": {
+        "title": "Cameras",
+        "image": "images/3_e91a9142-8cc8-4ed7-aa91-509a622f11f2_360x.png",
+        "slug": "cameras"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 2,
+    "fields": {
+        "title": "Mobiles Devices",
+        "image": "images/1200_1200-4_0fde0abd-41b6-4288-ba2f-47d385cd2a3f_360x.png",
+        "slug": "mobiles-devices"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 3,
+    "fields": {
+        "title": "AirPods",
+        "image": "images/e2.jpg",
+        "slug": "airpods"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 4,
+    "fields": {
+        "title": "Headphones",
+        "image": "images/beats_by_dre.jpeg",
+        "slug": "headphones"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 5,
+    "fields": {
+        "title": "Gaming devices",
+        "image": "images/51923-485x485-optimized.webp",
+        "slug": "gaming-devices"
+    }
+},
+{
+    "model": "core.product",
+    "pk": 1,
+    "fields": {
+        "name": "iPad Air M4",
+        "image": "images/1200_1200-4_360x.png",
+        "category": 2,
+        "desc": "<p>The iPad Air M4 is a good mobile gaming tool</p>",
+        "price": "150.00",
+        "regular_price": "700.00",
+        "stock": 20,
+        "shipping": "20.00",
+        "status": "Published",
+        "featured": true,
+        "vendor": 1,
+        "sku": "sku_53ca5",
+        "slug": "ipad-air-m4",
+        "date": "2025-07-12T14:57:25Z"
+    }
+},
+{
+    "model": "core.product",
+    "pk": 2,
+    "fields": {
+        "name": "iPhone 15 Pro Max",
+        "image": "images/1200_1200-1_ce07dbcd-242e-4c63-bf2f-8ec9269e692d_360x.png",
+        "category": 2,
+        "desc": "<p style=\"white-space:pre-wrap;\" dir=\"auto\">If you want to keep category_image in list_editable for some custom functionality (e.g., a custom form or widget), you�d need a more complex solution involving custom admin forms or inlines, but this is likely unnecessary for your use case. Let me know if you need guidance on such an advanced setup!</p>",
+        "price": "200.00",
+        "regular_price": "1500.00",
+        "stock": 5,
+        "shipping": "10.00",
+        "status": "Published",
+        "featured": true,
+        "vendor": 1,
+        "sku": "sku_b4ba2",
+        "slug": "iphone-15-pro-max",
+        "date": "2025-07-13T14:25:17Z"
+    }
+},
+{
+    "model": "core.product",
+    "pk": 4,
+    "fields": {
+        "name": "Solo Beats 4 Headphones",
+        "image": "images/p_img-1_nJFQNBc.jpeg",
+        "category": 4,
+        "desc": "Beats Solo4 Wireless Headphones\r\n\r\nExperience premium sound like never before with the Beats Solo4 � the perfect blend of style, comfort, and performance. Designed for everyday use, Solo4 features custom acoustic drivers that deliver rich, balanced sound with deep bass and clear highs.\r\n\r\nWith up to 50 hours of battery life, you can stay connected longer without reaching for the charger. Need a quick boost? A 10-minute Fast Fuel charge gives you up to 5 hours of playback.\r\n\r\nThe ultra-lightweight design and cushioned ear cups offer all-day comfort, while Bluetooth 5.3 ensures seamless connectivity. Solo4 also supports Find My (Apple) and Fast Pair (Android), so you're always connected wherever you go.\r\n\r\nWhether you're on a call or in your own zone, built-in mics and adaptive noise isolation keep your audio experience crisp and uninterrupted.\r\n",
+        "price": "122.00",
+        "regular_price": "125.00",
+        "stock": 7,
+        "shipping": "10.00",
+        "status": "Published",
+        "featured": true,
+        "vendor": 1,
+        "sku": "sku_b54bh",
+        "slug": "solo-beats-4-headphones-g8",
+        "date": "2025-08-20T19:55:28.663Z"
+    }
+},
+{
+    "model": "core.product",
+    "pk": 5,
+    "fields": {
+        "name": "Nintendo Switch Pro Controller",
+        "image": "images/Nintendo_switch.jpg",
+        "category": 5,
+        "desc": "",
+        "price": "40.00",
+        "regular_price": "50.00",
+        "stock": 25,
+        "shipping": "5.00",
+        "status": "Published",
+        "featured": false,
+        "vendor": 1,
+        "sku": "sku_2bdfa",
+        "slug": "nintendo-switch-pro-controller-2r",
+        "date": "2025-08-20T20:03:55Z"
+    }
+},
+{
+    "model": "core.variant",
+    "pk": 1,
+    "fields": {
+        "product": 2,
+        "name": "Color"
+    }
+},
+{
+    "model": "core.variant",
+    "pk": 2,
+    "fields": {
+        "product": 2,
+        "name": "Size"
+    }
+},
+{
+    "model": "core.variant",
+    "pk": 3,
+    "fields": {
+        "product": 2,
+        "name": "Specifications"
+    }
+},
+{
+    "model": "core.variant",
+    "pk": 12,
+    "fields": {
+        "product": 5,
+        "name": "Color"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 1,
+    "fields": {
+        "variant": 1,
+        "title": "White",
+        "content": "white"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 2,
+    "fields": {
+        "variant": 1,
+        "title": "Black",
+        "content": "black"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 3,
+    "fields": {
+        "variant": 1,
+        "title": "Gold",
+        "content": "gold"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 4,
+    "fields": {
+        "variant": 2,
+        "title": "XXL",
+        "content": "xxl"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 5,
+    "fields": {
+        "variant": 2,
+        "title": "XL",
+        "content": "XL"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 6,
+    "fields": {
+        "variant": 3,
+        "title": "Made in",
+        "content": "China"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 7,
+    "fields": {
+        "variant": 3,
+        "title": "Weight",
+        "content": "1.5kg"
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 25,
+    "fields": {
+        "variant": 12,
+        "title": "Red",
+        "content": ""
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 26,
+    "fields": {
+        "variant": 12,
+        "title": "Black",
+        "content": ""
+    }
+},
+{
+    "model": "core.variantitem",
+    "pk": 27,
+    "fields": {
+        "variant": 12,
+        "title": "Green",
+        "content": ""
+    }
+},
+{
+    "model": "core.gallery",
+    "pk": 1,
+    "fields": {
+        "product": 2,
+        "image": "images/iPhone-15-pro-max.webp",
+        "gid": "gid_cbb42"
+    }
+},
+{
+    "model": "core.gallery",
+    "pk": 2,
+    "fields": {
+        "product": 2,
+        "image": "images/9.png",
+        "gid": "gid_44ehh"
+    }
+},
+{
+    "model": "core.gallery",
+    "pk": 3,
+    "fields": {
+        "product": 2,
+        "image": "images/gold_iphone.jpg",
+        "gid": "gid_h2cce"
+    }
+},
+{
+    "model": "core.cart",
+    "pk": 270,
+    "fields": {
+        "product": 2,
+        "user": null,
+        "qty": 1,
+        "price": "200.00",
+        "sub_total": "200.00",
+        "shipping": "10.00",
+        "tax": "0.00",
+        "total": "210.00",
+        "size": "",
+        "color": "",
+        "cart_id": "4547231998",
+        "date": "2026-04-18T20:34:01.139Z"
+    }
+},
+{
+    "model": "core.coupon",
+    "pk": 1,
+    "fields": {
+        "vendor": 1,
+        "code": "scar1234",
+        "discount": 10,
+        "active": true,
+        "used": true
+    }
+},
+{
+    "model": "core.coupon",
+    "pk": 2,
+    "fields": {
+        "vendor": 1,
+        "code": "25506",
+        "discount": 5,
+        "active": true,
+        "used": true
+    }
+},
+{
+    "model": "core.coupon",
+    "pk": 4,
+    "fields": {
+        "vendor": 1,
+        "code": "Code123",
+        "discount": 15,
+        "active": true,
+        "used": false
+    }
+},
+{
+    "model": "core.order",
+    "pk": 82,
+    "fields": {
+        "customer": 5,
+        "sub_total": "400.00",
+        "shipping": "20.00",
+        "tax": "8.00",
+        "service_fee": "21.40",
+        "total": "449.40",
+        "payment_status": "Paid",
+        "payment_method": "Stripe",
+        "order_status": "Delivered",
+        "initial_total": "449.40",
+        "saved": "0.00",
+        "address": 2,
+        "oid": "oid_22dbc",
+        "payment_id": null,
+        "date": "2025-08-15T23:44:39.525Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.order",
+    "pk": 83,
+    "fields": {
+        "customer": 5,
+        "sub_total": "500.00",
+        "shipping": "50.00",
+        "tax": "10.00",
+        "service_fee": "28.00",
+        "total": "588.00",
+        "payment_status": "Paid",
+        "payment_method": "Stripe",
+        "order_status": "Processing",
+        "initial_total": "588.00",
+        "saved": "0.00",
+        "address": 2,
+        "oid": "oid_2gme2",
+        "payment_id": null,
+        "date": "2025-08-15T23:45:34.009Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.order",
+    "pk": 84,
+    "fields": {
+        "customer": 5,
+        "sub_total": "150.00",
+        "shipping": "20.00",
+        "tax": "3.00",
+        "service_fee": "8.65",
+        "total": "181.65",
+        "payment_status": "Paid",
+        "payment_method": "Paystack",
+        "order_status": "Pending",
+        "initial_total": "181.65",
+        "saved": "0.00",
+        "address": 2,
+        "oid": "oid_22h22",
+        "payment_id": null,
+        "date": "2025-08-15T23:46:06.196Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.order",
+    "pk": 85,
+    "fields": {
+        "customer": 5,
+        "sub_total": "350.00",
+        "shipping": "30.00",
+        "tax": "7.00",
+        "service_fee": "19.35",
+        "total": "406.35",
+        "payment_status": "Paid",
+        "payment_method": "Stripe",
+        "order_status": "Shipped",
+        "initial_total": "406.35",
+        "saved": "0.00",
+        "address": 2,
+        "oid": "oid_cljeg",
+        "payment_id": null,
+        "date": "2025-08-15T23:46:30.295Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.order",
+    "pk": 89,
+    "fields": {
+        "customer": 5,
+        "sub_total": "40.00",
+        "shipping": "5.00",
+        "tax": "0.00",
+        "service_fee": "2.25",
+        "total": "47.25",
+        "payment_status": "Paid",
+        "payment_method": "Paystack",
+        "order_status": "Pending",
+        "initial_total": "47.25",
+        "saved": "0.00",
+        "address": 5,
+        "oid": "oid_2fg11",
+        "payment_id": null,
+        "date": "2026-04-26T16:40:46.367Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.order",
+    "pk": 96,
+    "fields": {
+        "customer": 5,
+        "sub_total": "244.00",
+        "shipping": "20.00",
+        "tax": "0.00",
+        "service_fee": "13.20",
+        "total": "277.20",
+        "payment_status": "Paid",
+        "payment_method": "Paystack",
+        "order_status": "Shipped",
+        "initial_total": "277.20",
+        "saved": "0.00",
+        "address": 5,
+        "oid": "oid_2j2lo",
+        "payment_id": null,
+        "date": "2026-04-26T17:28:21.065Z",
+        "vendors": [
+            1
+        ],
+        "coupons": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 118,
+    "fields": {
+        "order": 82,
+        "order_status": "Delivered",
+        "shipping_service": "DHL",
+        "tracking_id": "12345678",
+        "product": 2,
+        "qty": 2,
+        "color": "Black",
+        "size": "XL",
+        "price": "200.00",
+        "sub_total": "400.00",
+        "shipping": "20.00",
+        "tax": "8.00",
+        "total": "420.00",
+        "initial_total": "420.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "275217",
+        "vendor": 1,
+        "date": "2025-08-15T23:44:39.533Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 119,
+    "fields": {
+        "order": 83,
+        "order_status": "Processing",
+        "shipping_service": null,
+        "tracking_id": "None",
+        "product": 1,
+        "qty": 2,
+        "color": "Not selected",
+        "size": "Not selected",
+        "price": "150.00",
+        "sub_total": "300.00",
+        "shipping": "40.00",
+        "tax": "6.00",
+        "total": "340.00",
+        "initial_total": "340.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "217595",
+        "vendor": 1,
+        "date": "2025-08-15T23:45:34.028Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 120,
+    "fields": {
+        "order": 83,
+        "order_status": "Shipped",
+        "shipping_service": "FedX",
+        "tracking_id": "5784637",
+        "product": 2,
+        "qty": 1,
+        "color": "White",
+        "size": "Not Selected",
+        "price": "200.00",
+        "sub_total": "200.00",
+        "shipping": "10.00",
+        "tax": "4.00",
+        "total": "210.00",
+        "initial_total": "210.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "653377",
+        "vendor": 1,
+        "date": "2025-08-15T23:45:34.035Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 121,
+    "fields": {
+        "order": 84,
+        "order_status": "Pending",
+        "shipping_service": null,
+        "tracking_id": null,
+        "product": 1,
+        "qty": 1,
+        "color": "Not Selected",
+        "size": "Not Selected",
+        "price": "150.00",
+        "sub_total": "150.00",
+        "shipping": "20.00",
+        "tax": "3.00",
+        "total": "170.00",
+        "initial_total": "170.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "126446",
+        "vendor": 1,
+        "date": "2025-08-15T23:46:06.225Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 122,
+    "fields": {
+        "order": 85,
+        "order_status": "Pending",
+        "shipping_service": null,
+        "tracking_id": null,
+        "product": 2,
+        "qty": 1,
+        "color": "Not Selected",
+        "size": "Not Selected",
+        "price": "200.00",
+        "sub_total": "200.00",
+        "shipping": "10.00",
+        "tax": "4.00",
+        "total": "210.00",
+        "initial_total": "210.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "890661",
+        "vendor": 1,
+        "date": "2025-08-15T23:46:30.321Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 123,
+    "fields": {
+        "order": 85,
+        "order_status": "Processing",
+        "shipping_service": "FedX",
+        "tracking_id": "12345678",
+        "product": 1,
+        "qty": 1,
+        "color": "Not Selected",
+        "size": "Not Selected",
+        "price": "150.00",
+        "sub_total": "150.00",
+        "shipping": "20.00",
+        "tax": "3.00",
+        "total": "170.00",
+        "initial_total": "170.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "110690",
+        "vendor": 1,
+        "date": "2025-08-15T23:46:30.340Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 132,
+    "fields": {
+        "order": 89,
+        "order_status": "Pending",
+        "shipping_service": null,
+        "tracking_id": null,
+        "product": 5,
+        "qty": 1,
+        "color": "Green",
+        "size": "Not Selected",
+        "price": "40.00",
+        "sub_total": "40.00",
+        "shipping": "5.00",
+        "tax": "0.00",
+        "total": "45.00",
+        "initial_total": "45.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "839931",
+        "vendor": 1,
+        "date": "2026-04-26T16:40:46.374Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.orderitem",
+    "pk": 139,
+    "fields": {
+        "order": 96,
+        "order_status": "Shipped",
+        "shipping_service": "UPS",
+        "tracking_id": "254102q9",
+        "product": 4,
+        "qty": 2,
+        "color": "Not selected",
+        "size": "Not selected",
+        "price": "122.00",
+        "sub_total": "244.00",
+        "shipping": "20.00",
+        "tax": "0.00",
+        "total": "264.00",
+        "initial_total": "264.00",
+        "saved": "0.00",
+        "applied_coupon": false,
+        "item_id": "217766",
+        "vendor": 1,
+        "date": "2026-04-26T17:28:21Z",
+        "coupon": []
+    }
+},
+{
+    "model": "core.review",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "review": "Good device",
+        "reply": "Glad you liked it",
+        "rating": 3,
+        "active": true,
+        "date": "2025-07-13T14:07:32.972Z"
+    }
+},
+{
+    "model": "core.review",
+    "pk": 2,
+    "fields": {
+        "user": 6,
+        "product": 1,
+        "review": "Great device",
+        "reply": "Thank you",
+        "rating": 4,
+        "active": true,
+        "date": "2025-08-19T23:53:17.951Z"
+    }
+},
+{
+    "model": "customer.wishlist",
+    "pk": 27,
+    "fields": {
+        "user": 6,
+        "product": 2
+    }
+},
+{
+    "model": "customer.wishlist",
+    "pk": 28,
+    "fields": {
+        "user": 6,
+        "product": 1
+    }
+},
+{
+    "model": "customer.wishlist",
+    "pk": 42,
+    "fields": {
+        "user": 5,
+        "product": 1
+    }
+},
+{
+    "model": "customer.wishlist",
+    "pk": 43,
+    "fields": {
+        "user": 5,
+        "product": 2
+    }
+},
+{
+    "model": "customer.address",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "full_name": "David Damilare",
+        "mobile": "07039020348",
+        "email": "daviddamilare776@gmail.com",
+        "country": "Nigeria",
+        "state": "Kwara State",
+        "city": "Ilorin",
+        "address": "Adewole, Mina Road",
+        "zip_code": "240001"
+    }
+},
+{
+    "model": "customer.address",
+    "pk": 2,
+    "fields": {
+        "user": 5,
+        "full_name": "Tyler Star",
+        "mobile": "07039020348",
+        "email": "davidtherodent@gmail.com",
+        "country": "Nigeria",
+        "state": "Kwara State",
+        "city": "Ilorin",
+        "address": "opposite Enterprise Grooming Instute (EGI, Fate Rd, Ilorin 234001, Kwara",
+        "zip_code": "240001"
+    }
+},
+{
+    "model": "customer.address",
+    "pk": 5,
+    "fields": {
+        "user": 5,
+        "full_name": "Fatima Bentley",
+        "mobile": "Repudiandae incidunt",
+        "email": "sexym@mailinator.com",
+        "country": "Culpa nemo ullamco i",
+        "state": "Eaque dignissimos ni",
+        "city": "Deserunt omnis aut r",
+        "address": "Assumenda eum deseru",
+        "zip_code": "90944"
+    }
+},
+{
+    "model": "customer.address",
+    "pk": 7,
+    "fields": {
+        "user": 6,
+        "full_name": "Eliana Tyson",
+        "mobile": "Assumenda quia ea do",
+        "email": "gynalefu@mailinator.com",
+        "country": "Cupiditate deserunt ",
+        "state": "Officia ullamco culp",
+        "city": "Delectus quo expedi",
+        "address": null,
+        "zip_code": "62667"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 11,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T22:48:03.920Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 12,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T22:51:24.912Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 13,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T22:56:46.210Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 14,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T23:45:08.404Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 15,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T23:45:51.549Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 16,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T23:46:17.657Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 17,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2025-08-15T23:47:02.051Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 18,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2026-04-26T16:41:07.312Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 19,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T16:55:02.795Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 20,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T17:14:25.015Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 21,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T17:16:13.999Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 22,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T17:18:14.098Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 23,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T17:21:58.894Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 24,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": true,
+        "date": "2026-04-26T17:23:39.489Z"
+    }
+},
+{
+    "model": "customer.notifications",
+    "pk": 25,
+    "fields": {
+        "user": 5,
+        "type": "New Order",
+        "seen": false,
+        "date": "2026-04-26T17:28:31.924Z"
+    }
+},
+{
+    "model": "userauths.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$CYHnF04s9C76hffvpQ0xpz$SJcyYPuR5gv32mB3WqeOXtt0jBBnHEO3goOU1R8wUd0=",
+        "last_login": "2026-04-23T16:43:16.521Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-07-09T23:19:12.836Z",
+        "username": "david",
+        "email": "daviddamilare776@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "userauths.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$1wGCrUD2dphqLrxFjJe7ij$kca46+T2KvpbNFeqAXS5CiAb13rznUkyglYNb585E6g=",
+        "last_login": "2026-04-26T21:16:06.891Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-11T16:31:12.025Z",
+        "username": "davidtherodent",
+        "email": "davidtherodent@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "userauths.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$zbN5Pf56nuOaiorsufW0sj$sab/E3nBQB66t/oVmIV8OAnV/qz72fQBKiUg6yj/aQA=",
+        "last_login": "2025-08-15T20:30:12.163Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-14T04:24:00.813Z",
+        "username": "johnpauladebayo588",
+        "email": "johnpauladebayo588@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "userauths.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$1rw4tOLxTVAZ0k4DqFdu1S$V4d6gAygT5KT0mQOL/hf2jY4tHYEVFCvrn2DTjW/zjE=",
+        "last_login": "2025-08-15T19:09:18.754Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-15T19:09:16.538Z",
+        "username": "suceli",
+        "email": "suceli@mailinator.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "userauths.profile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "image": "images/post-portrait-8_K9A2iwh.jpg",
+        "full_name": "David Damilare",
+        "phone": "07039020348",
+        "user_type": "Vendor"
+    }
+},
+{
+    "model": "userauths.profile",
+    "pk": 3,
+    "fields": {
+        "user": 5,
+        "image": "images/black-2.png",
+        "full_name": "Tyler Star",
+        "phone": "07039020348",
+        "user_type": "Customer"
+    }
+},
+{
+    "model": "userauths.profile",
+    "pk": 4,
+    "fields": {
+        "user": 6,
+        "image": "images/chefs-3.jpg",
+        "full_name": "John Paul",
+        "phone": "09037931855",
+        "user_type": null
+    }
+},
+{
+    "model": "userauths.profile",
+    "pk": 5,
+    "fields": {
+        "user": 7,
+        "image": "default.jpg",
+        "full_name": "Belle Randall",
+        "phone": "123",
+        "user_type": "Customer"
+    }
+},
+{
+    "model": "vendor.vendor",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "image": "images/music_listing_01.jpg",
+        "store_name": "Ryka's Store",
+        "description": "Ryka�s Store � Your One-Stop Gadget Destination\r\n\r\nRyka�s Store is the ultimate hub for tech lovers and gadget enthusiasts. Known for its wide range of high-quality electronics, the store offers everything from smartphones, laptops, and smartwatches to gaming consoles, accessories, and the latest tech innovations. Whether you�re a professional looking for reliable work tools, a gamer seeking the newest gear, or a casual buyer in need of everyday gadgets, Ryka�s Store has something for you.\r\n\r\nThe store prides itself on competitive prices, authentic products, and excellent customer service. Every item is carefully sourced to ensure durability and performance, and the knowledgeable staff is always ready to guide customers in choosing the perfect gadget for their needs.\r\n\r\nWith both in-store and online shopping options, Ryka�s Store blends convenience with quality, making it a trusted destination for tech shopping. From trendy releases to timeless classics, Ryka�s Store is where technology meets affordability.",
+        "country": "United States",
+        "vid": "vid_e55kai6",
+        "date": "2025-08-12T00:55:06.000Z",
+        "slug": "rykas-store"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 18,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 118,
+        "seen": true,
+        "date": "2025-08-15T23:45:08.427Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 19,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 120,
+        "seen": false,
+        "date": "2025-08-15T23:45:51.590Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 20,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 119,
+        "seen": false,
+        "date": "2025-08-15T23:45:51.612Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 21,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 121,
+        "seen": false,
+        "date": "2025-08-15T23:46:17.676Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 22,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 123,
+        "seen": false,
+        "date": "2025-08-15T23:47:02.098Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 23,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 122,
+        "seen": false,
+        "date": "2025-08-15T23:47:02.127Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 24,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 132,
+        "seen": false,
+        "date": "2026-04-26T16:41:07.327Z"
+    }
+},
+{
+    "model": "vendor.notifications",
+    "pk": 31,
+    "fields": {
+        "user": 1,
+        "type": "New Order",
+        "order": 139,
+        "seen": false,
+        "date": "2026-04-26T17:28:31.938Z"
+    }
+}
+]

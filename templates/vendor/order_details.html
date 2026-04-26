@@ -1,0 +1,148 @@
+{% extends 'partials/base.html' %} 
+{% load static %} 
+{% load humanize %} 
+{% block content %}
+
+    <section class="middle">
+        <div class="container-fluid">
+            <div class="row align-items-start justify-content-between">
+                 {% include 'vendor/sidebar.html' %}
+
+                <div class="col-12 col-md-12 col-lg-9 col-xl-10">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="row mb-4">
+                            <h4 class="mb-0 mb-2 fw-bold">Order Number: #{{order.oid}}</h4>
+                        </div>
+
+                        <div>
+                            <form action="{% url 'vendor:update_order_status' order.oid %}" class="d-flex" method="POST"> {% csrf_token %}
+                                <select name="order_status" id="" class="form-select">
+                                    <option value="">Order Status</option>
+                                    <option value="Pending" {% if order.order_status == 'Pending' %} selected {% endif %}>Pending</option>
+                                    <option value="Processing" {% if order.order_status == 'Processing' %} selected {% endif %}>Processing</option>
+                                    <option value="Shipped" {% if order.order_status == 'Shipped' %} selected {% endif %}>Shipped</option>
+                                    <option value="Delivered" {% if order.order_status == 'Delivered' %} selected {% endif %}>Delivered</option>
+                                    <option value="Cancelled" {% if order.order_status == 'Cancelled' %} selected {% endif %}>Cancelled</option>
+                                </select> <br>
+                               <button type="submit" class="btn btn bg-primary btn-sm rounded text-white w-100 ms-2">Save <i class="fas fa-save ms-2"></i></button>
+                            </form>
+                        </div>
+                </div>
+
+                    <div class="order-data">
+                        <div class="ord_list_wrap border mb-4 mfliud">
+                            <div class="ord_list_body text-left">
+                                <!-- Single Item -->
+                                {% for i in order.order_items.all %}
+                                    <div class="row align-items-center justify-content-center m-0 py-4 br-bottom">
+                                        <div class="col-xl-4 col-lg-5 col-md-5 col-12">
+                                            <div class="cart_single d-flex align-items-start mfliud-bot gap-3">
+                                                <div class="cart_selected_single_thumb">
+                                                    <a href="#"><img src="{{i.product.image.url}}" width="75" class="img-fluid rounded" alt="" /></a>
+                                                </div>
+                                                <div class="cart_single_caption pl-3">
+                                                    <h4 class="product_title fs-sm ft-medium mb-1 lh-1">{{i.product.name}}</h4>
+                                                    <p class="mb-2">
+                                                        <span class="text-dark medium">Vendor: {{i.product.vendor.profile.full_name}}</span> <br />
+                                                        {% if i.color %}
+                                                            <span class="text-dark medium">Color: {{i.color}}</span> <br>
+                                                        {% endif %}
+
+                                                        {% if i.size %}
+                                                            <span class="text-dark medium">Size: {{i.size}}</span> <br>
+                                                        {% endif %}
+
+                                                        <span class="text-dark medium">Qty: {{i.qty}}</span>
+                                                    </p>
+                                                    <h4 class="fs-sm ft-bold mb-0 lh-1">${{i.price|floatformat:2|intcomma}}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-3 col-md-3 col-6">
+                                            <p class="mb-1 p-0"><span class="text-muted">Status</span></p>
+                                            <div class="delv_status"><span class="ft-medium small rounded px-3 py-1" 
+                                                {% if order.order_status == 'Delivered' %} style="color: #138808; background-color: #00FF7F;" {% endif %} 
+                                                {% if order.order_status == 'Shipped' %} style="color: #4CBB17; background-color: #ACE1AF;" {% endif %} 
+                                                {% if order.order_status == 'Processing' %} style="color: #FFBF00; background-color: #EEDC82;" {% endif %} 
+                                                {% if order.order_status == 'Cancelled' %} style="color: #FE0000; background-color: #F08080;" {% endif %}
+                                                {% if order.order_status == 'Pending' %} style="color: #FE5A1D; background-color: #FFE5B4;" {% endif %}>
+                                                    
+                                                {{order.order_status}}
+                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-4 col-md-4 col-6">
+                                            <p class="mb-1 p-0"><span class="text-muted">Payment Status</span></p>
+                                                <h6 class="mb-0 ft-medium fs-sm" 
+                                                    {% if order.payment_status == 'Paid' %} style="color: #00FF00;" {% endif %} 
+                                                    {% if order.payment_status == 'Processing' %} style="color: #FFBF00;" {% endif %} 
+                                                    {% if order.payment_status == 'Failed' %} style="color: #FE0000;" {% endif %}>
+
+                                                    {{order.payment_status}}
+                                                </h6>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-4 col-md-4 col-6">
+                                            <p class="mb-1 p-0"><span class="text-muted">Order Date</span></p>
+                                            <h6 class="mb-0 ft-medium fs-sm">{{order.date}}</h6>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-3 col-md-3 col-6">
+                                            <a href="{% url 'vendor:order_item_detail' order.oid i.item_id %}" class="btn bg-primary btn-sm text-white rounded"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="ord_list_footer d-flex align-items-center justify-content-between br-top px-3">
+                                <div class="col-xl-12 pr-0 py-2 olf_flex d-flex align-items-center justify-content-between">
+                                    <div class="olf_flex_inner hide_mob">
+                                        <p class="m-0 p-0"><span class="text-muted medium">Paid using PayPal</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-5 mb-2 fw-bold">Order Summary</h4>
+                        <div class="">
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Date:</span> {{order.date}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Sub-total:</span> ${{order.sub_total|floatformat:2|intcomma}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Shipping:</span> ${{order.shipping|floatformat:2|intcomma}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Tax:</span> ${{order.tax|floatformat:2|intcomma}}</h5>
+
+                            {% if order.saved %}
+                                <h5 class="mb-2 fs-sm"><span class="fw-bold">Discount:</span> -${{order.saved|floatformat:2|intcomma}}</h5>
+                                <h5 class="mb-2 fs-sm" style="opacity: 0.5;"><span class="fw-bold">Initial Total:</span> ${{order.initial_total|floatformat:2|intcomma}}</h5>
+
+                            {% endif %}
+
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Total:</span> ${{order.total|floatformat:2|intcomma}}</h5>
+                        </div>
+
+                        <h4 class="mt-5 mb-2 fw-bold">Bio Data</h4>
+                        <div class="">
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Full Name:</span> {{order.address.full_name}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Email:</span>  {{order.address.email}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Mobile:</span>  {{order.address.mobile}}</h5>
+                        </div>
+
+                        <h4 class="mt-5 mb-2 fw-bold">Shipping Details</h4>
+                        <div class="">
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Address:</span>  {{order.address.address}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">City:</span>  {{order.address.city}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">State:</span>  {{order.address.state}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Country:</span> {{order.address.country}}</h5>
+                            <h5 class="mb-2 fs-sm"><span class="fw-bold">Zip:</span>  {{order.address.zip_code}}</h5>
+                        </div>
+
+                        <h4 class="mt-5 mb-2 fw-bold">Order Message</h4>
+                        <div class="">
+                            <h5 class="mb-2 fs-sm">
+                                <span class="fw-bold">Message:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nemo eos sed dolorum beatae accusantium <br />
+                                a error eius dolore aspernatur iure accusamus alias, deleniti quidem aliquam dolor ut delectus repellendus!
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
