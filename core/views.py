@@ -180,13 +180,7 @@ def filter_products(request):
     search_filter = request.GET.get('searchFilter')
     display = request.GET.get('display')
 
-    print("categories =======", categories)
-    print("rating =======", rating)
-    print("sizes =======", sizes)
-    print("colors =======", colors)
-    print("price_order =======", price_order)
-    print("search_filter =======", search_filter)
-    print("display =======", display)
+    
 
    
     # Apply category filtering
@@ -322,8 +316,7 @@ def add_to_cart(request):
     color = request.GET.get('color')
     size = request.GET.get('size')
     cart_id = request.GET.get('cart_id')
-    print('Color ===', color)
-    print('Size ===', size)
+    
 
     request.session['cart_id'] = cart_id
 
