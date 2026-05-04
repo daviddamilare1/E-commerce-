@@ -117,7 +117,7 @@ WSGI_APPLICATION = 'ecom_prj.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL', default=None))
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 
