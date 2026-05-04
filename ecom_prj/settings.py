@@ -38,7 +38,7 @@ DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "https://fastcart-ccis.onrender.com"
+    "fastcart-ccis.onrender.com"
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://fastcart-ccis.onrender.com",
@@ -72,7 +72,7 @@ INSTALLED_APPS = [
 
 
     # API
-    'api',
+    
     'rest_framework',
 ]
 
