@@ -38,10 +38,10 @@ DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".onrender.com"
+    "https://fastcart-ccis.onrender.com"
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
+    "https://fastcart-ccis.onrender.com",
 ]
 
 
@@ -227,9 +227,6 @@ STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY')
 PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY')
 
-
-RAZORPAY_SECRET_KEY = env('RAZORPAY_SECRET_KEY')
-RAZORPAY_PUBLIC_KEY = env('RAZORPAY_PUBLIC_KEY')
 
 
 FLUTTERWAVE_SECRET_KEY = env('FLUTTERWAVE_SECRET_KEY')
