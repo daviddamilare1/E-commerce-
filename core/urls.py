@@ -55,8 +55,7 @@ urlpatterns = [
     path('stripe_payment/<oid>/', stripe_payment, name='stripe_payment'),
             # Stripe verify payment
     path('stripe_payment_verify/<oid>/', stripe_payment_verify, name='stripe_payment_verify'),
-            # Paypal verify payment
-    path('paypal_payment_verify/<order_id>/', paypal_payment_verify, name='paypal_payment_verify'),
+    
 
             # Paystack Payment
     path('paystack_payment_verify/<oid>/', paystack_payment_verify, name='paystack_payment_verify'),
