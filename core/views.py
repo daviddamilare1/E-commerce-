@@ -728,7 +728,6 @@ def checkout(request, oid):
     context = {
         'order':order,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-        'paypal_client_id': settings.PAYPAL_CLIENT_ID,
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY,
         'amount_in_inr': amount_in_inr,
         'amount_in_ngn': amount_in_ngn,
@@ -926,63 +925,6 @@ print(ssl.OPENSSL_VERSION)
 
 
 
-
-
-def get_paypal_access_token():
-    token_url = "https://api.sandbox.paypal.com/v1/oauth2/token"
-    data = {'grant_type':'client_credentials'}
-    auth = (settings.PAYPAL_CLIENT_ID, settings.PAYPAL_SECRET_ID)
-    response = requests.post(token_url, data=data, auth=auth)
-
-    if response.status_code == 200:
-        return response.json()['access_token']
-    else:
-        raise Exception(f"failed to get access token from Paypal. Staus code: {response.status_code}")
-    
-
-
-        # PayPal Verify Payment
-@login_required(login_url='userauths:sign_in')
-def paypal_payment_verify(request, oid):
-    order = Order.objects.get(oid=oid)
-
-    transaction_id = request.GET.get('transaction_id')
-    paypal_api_url = f"https://api-m.sandbox.paypal.com/v2/checkout/orders/{transaction_id}"
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f"Bearer {get_paypal_access_token()}"
-
-        
-    }
-    print(get_paypal_access_token())
-    response = requests.get(paypal_api_url, headers=headers)
-
-    if response.status_code == 200:
-        paypal_order_data = response.json()
-        paypal_payment_status = paypal_order_data['status']
-        payment_method = 'PayPal'
-
-        if paypal_payment_status == 'COMPLETED':
-            if order.payment_status == 'Processing':
-                order.payment_status = 'Paid'
-                order.payment_method = 'PayPal'
-                order.save()
-
-                for item in order.order_items():
-                    product = item.product
-
-                    if product.stock >= item.qty:
-                        product.stock -= item.qty
-                        product.save()
-                    else:                  
-                        return redirect(f"/payment_status/{order.oid}/?payment_status=out_of_stock")
-                    
-                clear_cart_items(request)
-                return redirect (f"/payment_status/{order.oid}/?payment_staus=paid")
-        else:
-            return redirect (f"/payment_status/{order.oid}/?payment_status=failed")
-    else:
-        return redirect (f"/payment_status/{order.oid}/?payment_status=failed")
 
 
 
