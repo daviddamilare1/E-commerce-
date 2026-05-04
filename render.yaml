@@ -2,6 +2,6 @@ services:
   - type: web
     name: fastcart
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn ecom_prj.wsgi:application
     runtime: python-3.11.9
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn ecom_prj.wsgi:application --log-level debug --error-logfile -
