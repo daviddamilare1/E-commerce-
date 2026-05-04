@@ -25,6 +25,7 @@ from django.core.mail import send_mail
 from django.db import transaction
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 
@@ -84,8 +85,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 @ensure_csrf_cookie
 def index(request):
     category = Category.objects.all()
-    products_list = Product.objects.filter(status='Published', featured=True)
-    products = paginate_queryset(request, products_list, 12) #pagination
+    products = Product.objects.filter(status='Published', featured=True)
+    
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
@@ -102,7 +103,7 @@ def index(request):
     
     context = {
         'products': products,
-        'products_list': products_list,
+        
         'wishlist_product_ids': wishlist_product_ids,
         'category': category,
     }
@@ -169,7 +170,9 @@ def shop(request):
 
             # FILTER PRODUCTS
 def filter_products(request):
-    products = Product.objects.all()
+    # products = Product.objects.all()
+    products = Product.objects.filter(status="Published")
+    
 
     # Get filters from the AJAX request
     categories = request.GET.getlist('categories[]')
@@ -180,6 +183,7 @@ def filter_products(request):
     search_filter = request.GET.get('searchFilter')
     display = request.GET.get('display')
 
+    page = request.GET.get('page', 1) 
     
 
    
@@ -193,11 +197,18 @@ def filter_products(request):
 
     # Apply rating filtering
     if rating:
-        rating = int(rating[0])
+        rating = [int(r) for r in rating]
 
         products = products.annotate(
             avg_rating=Avg('reviews__rating')
-        ).filter(avg_rating__gte=rating)
+        )
+
+        query = Q()
+
+        for r in rating:
+            query |= Q(avg_rating__gte=r, avg_rating__lt=r + 1)
+
+        products = products.filter(query)
 
     
 
@@ -205,7 +216,7 @@ def filter_products(request):
     if colors:
         colors = [c for c in colors if c]
         products = products.filter(
-            variants__variant_items__content__in=colors
+            variants__variant_items__title__in=colors
         ).distinct()
 
     # Apply sizes filtering
@@ -233,13 +244,21 @@ def filter_products(request):
     if display and display.isdigit():
         products = products[:int(display)]
 
-   
+    # Pagination
+    paginator = Paginator(products, 15)
+    page_obj = paginator.get_page(page)
+
+    if request.user.is_authenticated:
+        # Get all product IDs in the user's wishlist
+        wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+    else:
+        wishlist_product_ids = []
 
 
     # Render the filtered products as HTML 
-    html = render_to_string('partials/_store.html', {'products': products})
+    html = render_to_string('partials/_store.html', {'products': page_obj, 'wishlist_product_ids': wishlist_product_ids})
 
-    return JsonResponse({'html': html, 'product_count': products.count()})
+    return JsonResponse({'html': html, 'product_count': products.count(), 'num_pages': paginator.num_pages})
 
 
 
@@ -253,8 +272,34 @@ def filter_products(request):
 def category_detail(request, slug):
     category = Category.objects.get(slug=slug)
     products_list = products = Product.objects.filter(status='Published', category=category)
+
+    categories = Category.objects.all()
+    colors = VariantItem.objects.filter(variant__name='Color').values('title', 'content').distinct()
+    sizes = VariantItem.objects.filter(variant__name='Size').values('title', 'content').distinct()
+    item_display = [
+        {"id": "1", "value": 1},
+        {"id": "2", "value": 2},
+        {"id": "3", "value": 3},
+        {"id": "40", "value": 40},
+        {"id": "50", "value": 50},
+        {"id": "100", "value": 100},
+    ]
+
+    ratings = [
+        {"id": "1", "value": "★☆☆☆☆"},
+        {"id": "2", "value": "★★☆☆☆"},
+        {"id": "3", "value": "★★★☆☆"},
+        {"id": "4", "value": "★★★★☆"},
+        {"id": "5", "value": "★★★★★"},
+    ]
+
+    prices = [
+        {"id": "lowest", "value": "Highest to Lowest"},
+        {"id": "highest", "value": "Lowest to Highest"},
+    ]
+
     products = paginate_queryset(request, products_list, 15)
-    # products = paginate_queryset(request, products_list, 15)
+    
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
@@ -267,6 +312,12 @@ def category_detail(request, slug):
         'products': products,
         'category': category,
         'wishlist_product_ids': wishlist_product_ids,
+        "categories": categories,
+        'colors': colors,
+        'sizes': sizes,
+        'item_display': item_display,
+        'ratings': ratings,
+        'prices': prices,
     }
     return render(request, 'core/category_detail.html', context)
 
@@ -792,6 +843,15 @@ def stripe_payment_verify(request, oid):
             order.payment_status = 'Paid'
             order.payment_method = 'Stripe'
             order.save()
+
+            for item in order.order_items():
+                    product = item.product
+
+                    if product.stock >= item.qty:
+                        product.stock -= item.qty
+                        product.save()
+                    else:
+                        return redirect(f"/payment_status/{order.oid}/?payment_status=out_of_stock")
             clear_cart_items(request)
 
 
@@ -821,11 +881,13 @@ def stripe_payment_verify(request, oid):
                 )
 
 
-                 # Email to Vendor
+                 
             for item in order.order_items():
-                vendor_merge_data = {
-                    'item':item
-                }
+                
+                # Email to Vendor
+                # vendor_merge_data = {
+                #     'item':item
+                # }
 
             #     subject = f"New Sale"
             #     text_body = render_to_string("email/order/vendor/vendor_new_order.txt", vendor_merge_data)
@@ -905,6 +967,16 @@ def paypal_payment_verify(request, oid):
                 order.payment_status = 'Paid'
                 order.payment_method = 'PayPal'
                 order.save()
+
+                for item in order.order_items():
+                    product = item.product
+
+                    if product.stock >= item.qty:
+                        product.stock -= item.qty
+                        product.save()
+                    else:                  
+                        return redirect(f"/payment_status/{order.oid}/?payment_status=out_of_stock")
+                    
                 clear_cart_items(request)
                 return redirect (f"/payment_status/{order.oid}/?payment_staus=paid")
         else:
@@ -937,6 +1009,16 @@ def paystack_payment_verify(request, oid):
                     order.payment_status = 'Paid'
                     order.payment_method = 'Paystack'
                     order.save()
+
+                    for item in order.order_items():
+                        product = item.product
+
+                        if product.stock >= item.qty:
+                            product.stock -= item.qty
+                            product.save()
+                        else:
+                            return redirect(f"/payment_status/{order.oid}/?payment_status=out_of_stock")
+                    
                     clear_cart_items(request)
                      
             # Email Customer
@@ -1015,6 +1097,16 @@ def flutterwave_payment_callback(request, oid):
                     order.payment_status = 'Paid'
                     order.payment_method = 'Paystack'
                     order.save()
+
+                    for item in order.order_items():
+                        product = item.product
+
+                        if product.stock >= item.qty:
+                            product.stock -= item.qty
+                            product.save()
+                        else:
+                            return redirect(f"/payment_status/{order.oid}/?payment_status=out_of_stock")
+                        
                     clear_cart_items(request)
                     return redirect (f"/payment_status/{order.oid}/?payment_status=paid")
     return redirect (f"/payment_status/{order.oid}/?payment_status=failed")
@@ -1067,6 +1159,21 @@ def about(request):
 
         # CONTACT US
 def contact(request):
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+    
+        Contact.objects.create(
+            full_name = full_name,
+            email = email,
+            subject = subject,
+            message = message,
+        )
+        messages.success(request, 'Message sent successfully.')
+        return redirect ('core:contact')
+
 
     return render(request, 'pages/contact.html')
 

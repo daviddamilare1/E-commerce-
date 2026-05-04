@@ -319,6 +319,7 @@ $(document).ready(function() {
             prices: "",
             display: "",
             searchFilter: "",
+            page: 1
         };
 
         $(".category-filter:checked").each(function () {
@@ -459,6 +460,60 @@ $(document).ready(function() {
             }
         });
     });
+
+
+
+
+    $(document).on("click", ".pagination-link", function (e) {
+        e.preventDefault();
+
+        let url = new URL($(this).attr("href"), window.location.origin);
+        let page = url.searchParams.get("page");
+
+        let filters = {
+            categories: [],
+            rating: [],
+            colors: [],
+            sizes: [],
+            prices: "",
+            display: "",
+            searchFilter: "",
+            page: page
+        };
+        console.log("Pagination page clicked:", page);
+
+        $(".category-filter:checked").each(function () {
+            filters.categories.push($(this).val());
+        });
+
+        $(".rating-filter:checked").each(function () {
+            filters.rating.push($(this).val());
+        });
+
+        $(".colors-filter:checked").each(function () {
+            filters.colors.push($(this).val());
+        });
+
+        $(".size-filter:checked").each(function () {
+            filters.sizes.push($(this).val());
+        });
+
+        filters.display = $("input[name='items-display']:checked").val();
+        filters.prices = $("input[name='price-filter']:checked").val();
+        filters.searchFilter = $("input[name='search-filter']").val();
+
+        $.ajax({
+            url: "/filter_products/",
+            method: "GET",
+            data: filters,
+            success: function (response) {
+                $("#products-list").html(response.html);
+                $(".product_count").html(response.product_count);
+            }
+        });
+    });
+
+
 
     // Function to get CSRF token from cookies
     function getCookie(name) {

@@ -17,18 +17,19 @@
                     <div class="row align-items-center rows-products">
                         <!-- Single -->
                         {% for w in wishlist %}
-                            <div class="col-lg-4 mb-3">
-                                <div class="product_grid card b-0  rounded-3 shadow m-2 p-2">
+                            <div class="col-lg-4">
+                                
+                                <div class="product_grid card b-0  rounded-3 shadow m-2 p-2" style="max-width: 100%; max-height: 100%; object-fit: cover">
                                     <div class="card-body p-0">
                                         <div class="shop_thumb position-relative">
-                                            <a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' w.product.slug %}"><img class="card-img-top" style="width: 100%; height: 230px; object-fit: cover;" src="{{w.product.image.url}}" alt="..." /></a>
+                                            <a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' w.product.slug %}"><img class="card-img-top" style="max-width: 100%; max-height: 100%; object-fit: cover"  src="{{w.product.image.url}}" alt="..." /></a>
                                         </div>
                                     </div>
                                     <div class="card-footer b-0 p-0 pt-2 bg-white d-flex align-items-start justify-content-between">
                                         <div class="text-left">
                                             <div class="text-left">
                                                 <div class="elso_titl"><span class="small"><a href="">{{w.product.category.title}}</a></span></div>
-                                                <h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' w.product.slug %}">{{w.product.name}}</a></h5>
+                                                <h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' w.product.slug %}">{{w.product.name|truncatechars:25}}</a></h5>
                                                     <div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0 mt-3">
                                                         <!-- ({{w.product.reviews.count}}) -->
 

@@ -58,7 +58,7 @@ def get_monthly_sales():
 def dashboard(request):
     products = Product.objects.filter(vendor=request.user)
     orders = Order.objects.filter(vendors=request.user, payment_status='Paid')
-    revenue = OrderItem.objects.filter(vendor=request.user).aggregate(total = models.Sum('total'))['total'] or 0
+    revenue = Order.objects.filter(vendors=request.user).aggregate(total = models.Sum('total'))['total'] or 0
     notis = Notifications.objects.filter(user=request.user, seen=False)
     reviews = Review.objects.filter(product__vendor=request.user)
     rating = Review.objects.filter(product__vendor=request.user).aggregate(avg = models.Avg('rating'))['avg']
@@ -539,6 +539,7 @@ def update_product(request, id):
         regular_price = request.POST.get("regular_price")
         shipping = request.POST.get("shipping")
         stock = request.POST.get("stock")
+        featured = request.POST.get('featured') == 'on'
 
        
         product.name = name
@@ -548,6 +549,7 @@ def update_product(request, id):
         product.regular_price = regular_price
         product.shipping = shipping
         product.stock = stock
+        product.featured = featured
 
         if image:  
             product.image = image

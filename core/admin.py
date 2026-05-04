@@ -61,7 +61,8 @@ class CartAdmin(admin.ModelAdmin):
     list_filter = ['date', 'product']
 
 class CouponAdmin(admin.ModelAdmin):
-    list_display = ['code', 'vendor', 'discount']
+    list_display = ['code', 'vendor', 'discount', 'active', 'used']
+    list_editable = ['vendor', 'discount', 'active', 'used']
     search_fields = ['code', 'vendor__username']
 
 class OrderAdmin(admin.ModelAdmin):
@@ -80,6 +81,13 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'product__name']
     list_filter = ['active', 'rating']
 
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email', 'message']
+
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Variant, VariantAdmin)
@@ -90,3 +98,4 @@ admin.site.register(Coupon, CouponAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Contact, ContactAdmin)

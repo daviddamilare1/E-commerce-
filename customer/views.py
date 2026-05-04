@@ -139,30 +139,31 @@ def remove_wishlist(request, id):
 @csrf_protect
 def add_to_wishlist(request, id):
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            product = Product.objects.filter(id=id).first()
-            if not product:
-                return JsonResponse({'message': 'Product not found', 'in_wishlist': False}, status=404)
+        product = Product.objects.filter(id=id).first()
+        if not product:
+            return JsonResponse({'message': 'Product not found', 'in_wishlist': False}, status=404)
 
-            action = request.POST.get('action', 'add')
-            wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
+        wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
 
-            if action == 'add' and not wishlist_item:
-                Wishlist.objects.create(user=request.user, product=product)
-                wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
-            elif action == 'remove' and wishlist_item:
-                wishlist_item.delete()
-
-            wishlist = Wishlist.objects.filter(user=request.user)
-            return JsonResponse({
-                'message': 'Item added to Wishlist' if action == 'add' and wishlist_item else 'Item removed from Wishlist',
-                'wishlist_count': wishlist.count(),
-                'in_wishlist': Wishlist.objects.filter(user=request.user, product=product).exists()
-            })
+        
+        if wishlist_item:
+            wishlist_item.delete()
+            message = 'Item removed from Wishlist'
+            in_wishlist = False
         else:
-            return JsonResponse({'message': 'Login to add to Wishlist', 'wishlist_count': 0, 'in_wishlist': False})
-    return JsonResponse({'message': 'Invalid request method', 'in_wishlist': False}, status=400)
+            Wishlist.objects.create(user=request.user, product=product)
+            message = 'Item added to Wishlist'
+            in_wishlist = True
 
+        wishlist_count = Wishlist.objects.filter(user=request.user).count()
+
+        return JsonResponse({
+            'message': message,
+            'wishlist_count': wishlist_count,
+            'in_wishlist': in_wishlist
+        })
+
+    return JsonResponse({'message': 'Invalid request method'}, status=400)
 
 
 

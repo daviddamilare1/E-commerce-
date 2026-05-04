@@ -51,7 +51,7 @@
 
                                                 <div class="mb-3">
                                                     <label class="form-label">Product Description</label>
-                                                    <textarea name="description"  class="form-control rounded" cols="30" rows="10">{{ product.description }}</textarea>
+                                                    <textarea name="description" class="form-control rounded" cols="30" rows="10">{{ product.desc }}</textarea>
                                                     <small>A brief summary of your product.</small>
                                                 </div>
                                                 <div class="mb-3">
@@ -69,6 +69,10 @@
                                                 <div class="mb-3">
                                                     <label for="productPrice" class="form-label">Stock</label>
                                                     <input name="stock" value="{{product.stock}}" id="productPrice" class="form-control rounded" type="number" placeholder="Stock Count" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productPrice" class="form-label">Featured Product</label>
+                                                    <input name="featured" type="checkbox" {% if product.featured %}checked{% endif %} class="mt-4"/>
                                                 </div>
                                             </div>
 

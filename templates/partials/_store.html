@@ -1,59 +1,79 @@
-<div class="row align-items-center rows-products" id="products-list">						
-						 
-						{% for p in products %}
+	
 
-							<div class="col-lg-4">
-								<div class="product_grid card b-0  rounded-3 shadow m-2 p-2">
-									<div class="card-body p-0">
-										<div class="shop_thumb position-relative">
-											<a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' p.slug %}"><img class="card-img-top" style="max-width: fit-content; max-height: fit-content; object-fit: cover" src="{{p.image.url}}" alt="..." /></a>
-										</div>
-									</div>
-									<div class="card-footer b-0 p-0 pt-2 bg-white d-flex align-items-start justify-content-between">
-										<div class="text-left">
-											<div class="text-left">
-												<div class="elso_titl"><span class="small">{{p.category.title}}</span></div>
-												<h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' p.slug %}">{{p.name}}</a></h5>
-												  <div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0 mt-3">
-													{% if not p.average_rating  %}
-													<i class="fas fa-star text-warning"></i>
-													{% elif p.average_rating > 0 and p.average_rating < 2 %}
-													<i class="fas fa-star text-warning"></i>
-													{% elif p.average_rating > 1 and p.average_rating < 3 %}
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													{% elif p.average_rating > 2 and p.average_rating < 4 %}
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													{% elif p.average_rating > 3 and p.average_rating < 5 %}
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													{% elif p.average_rating > 4 %}
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													<i class="fas fa-star text-warning"></i>
-													{% endif %}
-												</div>
-												<div class="elis_rty"><span class="ft-bold text-dark fs-sm">${{p.price}}</span></div>
-											</div>
-											<div class="d-flex align-items-center gap-3">
-												<button type="button" class="btn btn-sm bg-primary text-white rounded add_to_cart" data-id="{{p.id}}">Add to cart <i class="fas fa-shopping-cart ms-2"></i></button>
-												<a href="#" class="me-2 add_to_wishlist" data-product_id="{{p.id}}"><i class="fas fa-heart fs-4 text-dark"></i></a>
-                                        		<input type="hidden" class="quantity" value="1" name="" id="">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-                        {% empty %}
-                            <div class="col-12 text-center py-5">
-                                <h5>No products found</h5>
-                            </div>
-						{% endfor %}
+	<div class="row align-items-center rows-products">						
 							
+		{% for p in products %}
+			<div class="col-lg-4">
+				<div class="product_grid card b-0  rounded-3 shadow m-2 p-2" style="width: 100%; height: 100%; object-fit: cover">
+					<div class="card-body p-0">
+						<div class="shop_thumb position-relative">
+							<a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' p.slug %}"><img style="max-width: 100%; max-height: 100%; object-fit: cover" src="{{p.image.url}}" alt="..." /></a>
+						</div>
 					</div>
+					<div class="card-footer b-0 p-0 pt-2 bg-white d-flex align-items-start justify-content-between">
+						<div class="text-left">
+							<div class="text-left">
+								<div class="elso_titl"><span class="small"><a href="{% url 'core:category_detail' p.category.id %}">{{p.category.title}}</a></span></div>
+									<h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' p.slug %}">{{p.name|truncatechars:25}}</a></h5>
+									<div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0 mt-3">
+									{% for i in "12345" %}
+										<i class="fas fa-star" {% if p.average_rating >= forloop.counter %}style="color: gold;"{% endif %}></i>
+									{% endfor %}
+								</div>
+								<div class="elis_rty"><span class="ft-bold text-dark fs-sm">${{p.price}}</span></div>
+							</div>
+							<div class="d-flex align-items-center gap-3">
+								<button type="button" class="btn btn-sm bg-primary text-white rounded add_to_cart" data-id="{{p.id}}">Add to cart <i class="fas fa-shopping-cart ms-2"></i></button>
+								{% if p.id in wishlist_product_ids %}
+									<a href="#" class="me-2 add_to_wishlist" data-product_id="{{p.id}}"><i class="fas fa-heart fs-4" style="color: red;"></i></a>
+								{% else %}
+									<a href="#" class="me-2 add_to_wishlist" data-product_id="{{p.id}}"><i class="fas fa-heart fs-4" style="color: grey;"></i></a>
+								{% endif %}
+								<input type="hidden" class="quantity" value="1" name="" id="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% empty %}
+			<div class="col-12 text-center py-5">
+				<h5>No products found</h5>
+			</div>
+		{% endfor %}
+			
+	</div>
+
+
+<nav>
+			<!-- Pagination -->
+	<ul class="pagination">
+
+		{% if products.has_previous %}
+			<li class="page-item">
+				<a class="page-link pagination-link" href="?page={{products.previous_page_number}}">Previous</a>
+			</li>
+		{% else %}
+			<li class="page-item disabled">
+				<span class="page-link">Previous</span>
+			</li>
+		{% endif %}
+														
+		{% for num in products.paginator.page_range %}
+			<li class="page-item {% if products.number == num %} active {% endif %}">
+				<a class="page-link pagination-link" href="?page={{num}}">{{num}}</a>
+				
+			</li>
+		{% endfor %}
+		
+		{% if products.has_next %}
+			<li class="page-item">
+				<a class="page-link  pagination-link" href="?page={{products.next_page_number}}">Next</a>
+			</li>
+		{% else %}
+			<li class="page-item disabled">
+				<span class="page-link">Next</span>
+			</li>                           
+		{% endif %}                           
+	</ul>
+		<!-- END -->
+</nav>	

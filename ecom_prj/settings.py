@@ -35,7 +35,7 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
-    "https://4088-102-89-83-183.ngrok-free.app",
+    "https://601b-102-89-84-133.ngrok-free.app",
 ]
 
 
