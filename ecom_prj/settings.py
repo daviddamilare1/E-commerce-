@@ -117,9 +117,12 @@ WSGI_APPLICATION = 'ecom_prj.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
 
 # DATABASES = {
 #     'default': {
