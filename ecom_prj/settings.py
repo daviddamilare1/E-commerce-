@@ -197,11 +197,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['map']
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['map', 'woff2', 'woff']
+WHITENOISE_MANIFEST_STRICT = False
 
 AUTH_USER_MODEL = 'userauths.User'
 
