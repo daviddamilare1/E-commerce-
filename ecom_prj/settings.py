@@ -38,10 +38,10 @@ DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "fastcart-ccis.onrender.com"
+    "fastcart-nhyl.onrender.com"
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://fastcart-ccis.onrender.com",
+    "https://fastcart-nhyl.onrender.com",
 ]
 
 
