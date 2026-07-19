@@ -39,7 +39,7 @@ POSTGRES_LOCALLY = env.bool('POSTGRES_LOCALLY', default=False)
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "fastcart-nhyl.onrender.com"
+    "fastcart-i118.onrender.com"
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://fastcart-nhyl.onrender.com",
