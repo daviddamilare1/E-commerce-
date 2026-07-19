@@ -8,9 +8,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                            <div class="sp-loading" ><img src="{% static 'assets/img/shop/4.png' %}" alt="" /><br />LOADING IMAGES</div>
+                            <div class="sp-loading" ><img src="{{product.image.url}}" alt="" /></div>
                             <div class="sp-wrap">
-                                <a href="{{product.image.url}}"><img src="{{product.image.url}}" alt="" /></a>
+                                <a href="{{product.image.url}}">
+                                    
+                                    <img src="{{product.image.url}}" style="height: 600px; width: 100%; object-fit: cover; border-radius: 20px;" alt="" />
+                                    
+                                </a>
 
                                 {% for i in product.gallery.all %}
                                     <a href="{{i.image.url}}"><img src="{{i.image.url}}" alt="" /></a>
@@ -31,52 +35,12 @@
                                     <h2 class="ft-bold mb-1">{{product.name}}</h2>
                                     <div class="text-left">
                                         <div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
-                                                {% if not product.average_rating %}
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                {% elif product.average_rating > 0 and product.average_rating < 2 %}
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                {% elif product.average_rating > 1 and product.average_rating < 3 %}
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    
-                                                {% elif product.average_rating > 2 and product.average_rating < 4 %}
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    
-                                                {% elif product.average_rating > 3 and product.average_rating < 5 %}
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star"></i>
-                                                {% elif product.average_rating > 4 %}
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                
-                                                {% endif %}
+                                                {% for i in "12345" %}
+                                                    <i class="fas fa-star" {% if product.avg_rating >= forloop.counter %}style="color: gold;"{% endif %}></i>
+                                                {% endfor %}
+                                                                
+                                            <span class="small ms-2">({{review_count|default:"0"}} Reviews)</span>
                                             
-                                            {% if review_count %}
-                                            <span class="small ms-2">({{review_count}} Reviews)</span>
-                                            {% else %}
-                                            <span class="small ms-2">(No reviews yet)</span>
-                                            {% endif %}
                                         </div>
                                         <div class="elis_rty mt-3"><span class="ft-medium text-muted line-through fs-md me-3">${{product.regular_price}}</span><span class="ft-bold theme-cl fs-lg me-3">${{product.price}}</span><span class="ft-regular text-light bg-success py-1 px-2 fs-sm">{{product.stock}} In Stock</span></div>
                                     </div>
@@ -239,45 +203,9 @@
                                                     </div>
                                                     <div class="single_capt_right">
                                                         <div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
-                                                            {% if not r.rating %}
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.rating > 0 and r.rating < 2 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.rating > 1 and r.rating < 3 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                
-                                                            {% elif r.rating > 2 and r.rating < 4 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                
-                                                            {% elif r.rating > 3 and r.rating < 5 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.rating > 4 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                            {% endif %}
+                                                            {% for i in "12345" %}
+                                                                <i class="fas fa-star" {% if r.avg_rating >= forloop.counter %}style="color: gold;"{% endif %}></i>
+                                                            {% endfor %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -312,12 +240,19 @@
                         <div class="row align-items-center rows-products">
                             {% for r in related_products %}
                                 <!-- Single -->
-                                <div class="col-xl-3 col-lg-4 col-md-6 col-6 rounded-3">
-                                    <div class="product_grid card b-0">
+                                <div class="col-lg-3 mb-3">
+                                    <div class="product_grid card b-0 rounded-3 shadow m-2 p-2">
                                         <div class="badge bg-info text-white position-absolute ft-regular ab-left text-upper">HOT</div>
                                         <div class="card-body p-0">
                                             <div class="shop_thumb position-relative">
-                                                <a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' r.slug %}"><img class="card-img-top" style="max-width: fit-content; max-height: fit-content; object-fit: cover" src="{{r.image.url}}" alt="..."  /></a>
+                                                <a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' r.slug %}">
+                                                    {% if r.image %}
+                                                        <img class="card-img-top" style="max-width: fit-content; max-height: fit-content; object-fit: cover" src="{{r.image.url}}" alt="..."  />
+                                                    {% else %}
+                                                        <img src="{% static 'assets/img/pfp.webp' %}" class="card-img-top" style="max-width: 100%; max-height: 100%; object-fit: cover" alt="" />
+                                                    {% endif %}
+                                                    
+                                                </a>
                                                 <div class="product-left-hover-overlay">
                                                     <ul class="left-over-buttons">
                                                         <li>
@@ -334,47 +269,11 @@
                                             <div class="text-left">
                                                 <div class="text-left">
                                                     <div class="elso_titl"><span class="small">{{r.category}}</span></div>
-                                                    <h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' r.slug %}">{{r.name}}</a></h5>
+                                                    <h5 class="fs-md mb-0 lh-1 mb-1"><a href="{% url 'core:details' r.slug %}">{{r.name|truncatechars:25}}</a></h5>
                                                     <div class="star-rating align-items-center d-flex justify-content-left mb-2 p-0">
-                                                            {% if not r.average_rating %}
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.average_rating > 0 and r.average_rating < 2 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.average_rating > 1 and r.average_rating < 3 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                
-                                                            {% elif r.average_rating > 2 and r.average_rating < 4 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                
-                                                            {% elif r.average_rating > 3 and r.average_rating < 5 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            {% elif r.average_rating > 4 %}
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                                <i class="fas fa-star" style="color: gold;"></i>
-                                                            {% endif %}
+                                                            {% for i in "12345" %}
+                                                                <i class="fas fa-star" {% if r.avg_rating >= forloop.counter %}style="color: gold;"{% endif %}></i>
+                                                            {% endfor %}
                                                     </div>
                                                     <div class="elis_rty"><span class="ft-bold text-dark fs-sm">${{r.price}}</span></div>
                                                     <div class="d-flex align-items-center gap-3">

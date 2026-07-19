@@ -36,7 +36,14 @@
                                 <div class="shadow rounded mb-3 item_div_{{i.id}}">
                                     <div class="row d-flex align-items-center p-3">
                                         <div class="col-lg-4 d-flex gap-3">
-                                            <a href="{% url 'core:details' i.product.slug %}"><img src="{{i.product.image.url}}" alt="" style="width: 100px; height: 100px; object-fit: cover" /></a>
+                                            <a href="{% url 'core:details' i.product.slug %}">
+                                                {% if i.product.image %}
+                                                    <img src="{{i.product.image.url}}" loading="lazy" alt="" style="width: 100px; height: 100px; object-fit: cover" />
+                                                {% else %}
+                                                    <img src="static/assets/img/pfp.webp" class="card-img-top" style="width: 100px; height: 100px; object-fit: cover" alt="" />
+                                                {% endif %}
+                                            
+                                            </a>
                                             <div class="p-2">
                                                 <h5>{{i.product.name}}</h5>
                                                 <p class="mb-0 mt-0">Price: ${{i.product.price|floatformat:2|intcomma}}</p>

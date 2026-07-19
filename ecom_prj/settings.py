@@ -17,8 +17,6 @@ from decouple import config
 from environs import Env
 from django.contrib import messages
 
-
-
 env = Env()
 env.read_env()
 
@@ -34,6 +32,9 @@ SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
+
+ENVIRONMENT = env('ENVIRONMENT', default='development')
+POSTGRES_LOCALLY = env.bool('POSTGRES_LOCALLY', default=False)
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
@@ -116,13 +119,23 @@ WSGI_APPLICATION = 'ecom_prj.wsgi.application'
 
 
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv("DATABASE_URL"),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
+
+
+# if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+#     DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv("DATABASE_URL"),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+#     }
 
 # DATABASES = {
 #     'default': {
@@ -135,9 +148,15 @@ DATABASES = {
 #     }
 # }
 
+DATABASES = {
+    "default": dj_database_url.config(
+        default=env("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True,
+    )
+}
 
-
-
+print("DATABASE_URL =", env("DATABASE_URL", default=None))
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -198,7 +217,26 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': env('CLOUD_NAME'),
+#     'API_KEY': env('CLOUD_API_KEY'),
+#     'API_SECRET': env('CLOUD_API_SECRET')
+# }
+
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+#     },
+# }
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['map', 'woff2', 'woff']

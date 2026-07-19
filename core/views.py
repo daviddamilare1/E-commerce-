@@ -22,10 +22,12 @@ from django.template.loader import render_to_string
 from customer import models as customer_models
 from vendor import models as vendor_models
 from django.core.mail import send_mail
+from django.db.models import Count
 from django.db import transaction
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 
 
 
@@ -67,10 +69,11 @@ def get_cart_items(request):
 @login_required(login_url='userauths:sign_in')
 def cancel_order(request):
     order = Order.objects.filter(customer=request.user, payment_status='Processing').first()
-    
+    cart_id = request.session.get('cart_id')
     if request.user.is_authenticated:
         if order:
             order.delete()
+            Cart.objects.filter(cart_id=cart_id, user=request.user).delete()
     return redirect('core:index')
         
 
@@ -85,12 +88,35 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 @ensure_csrf_cookie
 def index(request):
     category = Category.objects.all()
-    products = Product.objects.filter(status='Published', featured=True)
+    # products = Product.objects.filter(status='Published', featured=True)
+    products = Product.objects.filter(
+            status='Published',
+            featured=True
+        ).select_related(
+            'category'
+        ).annotate(
+            avg_rating=Avg('reviews__rating')
+        )
     
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
-        wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+        wishlist_product_ids = list(
+                Wishlist.objects.only(
+                    'product_id'
+                ).filter(
+                    user=request.user
+                ).values_list(
+                    'product_id',
+                    flat=True
+                )
+            )
+        # wishlist_product_ids = list(
+        #         Wishlist.objects.filter(
+        #             user=request.user
+        #         ).values_list('product_id', flat=True)
+        #     )
+        # wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
     else:
         wishlist_product_ids = []
 
@@ -112,8 +138,25 @@ def index(request):
 
             # SHOP PAGE
 def shop(request):
-    products_list = Product.objects.filter(status="Published")
-    categories = Category.objects.all()
+    # products_list = Product.objects.filter(status="Published")
+    products_list = Product.objects.filter(
+            status="Published"
+        ).only(
+            "id",
+            "name",
+            "slug",
+            "price",
+            "image",
+            "category"
+        ).select_related(
+            "category"
+        ).annotate(
+            avg_rating=Avg("reviews__rating")
+        )
+    # categories = Category.objects.all()
+    categories = Category.objects.annotate(
+            product_count=Count('products')
+        )
     colors = VariantItem.objects.filter(variant__name='Color').values('title', 'content').distinct()
     sizes = VariantItem.objects.filter(variant__name='Size').values('title', 'content').distinct()
     item_display = [
@@ -139,11 +182,16 @@ def shop(request):
     ]
 
 
-    print(sizes)
+    # print(sizes)
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
-        wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+        wishlist_product_ids = list(
+                Wishlist.objects.filter(
+                    user=request.user
+                ).values_list('product_id', flat=True)
+            )
+        # wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
     else:
         wishlist_product_ids = []
     products = paginate_queryset(request, products_list, 15)
@@ -171,7 +219,16 @@ def shop(request):
             # FILTER PRODUCTS
 def filter_products(request):
     # products = Product.objects.all()
-    products = Product.objects.filter(status="Published")
+    # products = Product.objects.filter(status="Published")
+    products = Product.objects.filter(
+            status="Published"
+        ).select_related(
+            'category'
+        ).prefetch_related(
+            'variants__variant_items'
+        ).annotate(
+            avg_rating=Avg('reviews__rating')
+        )
     
 
     # Get filters from the AJAX request
@@ -250,7 +307,12 @@ def filter_products(request):
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
-        wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+        wishlist_product_ids = list(
+                Wishlist.objects.filter(
+                    user=request.user
+                ).values_list('product_id', flat=True)
+            )
+        # wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
     else:
         wishlist_product_ids = []
 
@@ -271,11 +333,52 @@ def filter_products(request):
         # Category details
 def category_detail(request, slug):
     category = Category.objects.get(slug=slug)
-    products_list = products = Product.objects.filter(status='Published', category=category)
+    products_list = products = Product.objects.select_related('category').only(
+        'id', 
+        'name',
+        'slug',
+        'price',
+        'image',
+        'stock',
+        'category__title',
+        
+        ).annotate(avg_rating=Avg('reviews__rating')).filter(status='Published', category=category)
 
-    categories = Category.objects.all()
-    colors = VariantItem.objects.filter(variant__name='Color').values('title', 'content').distinct()
-    sizes = VariantItem.objects.filter(variant__name='Size').values('title', 'content').distinct()
+    categories = Category.objects.only(
+            'id',
+            'title',
+            'slug',
+            'image'
+        )
+    # categories = Category.objects.all()
+    # colors = VariantItem.objects.filter(variant__name='Color').values('title', 'content').distinct()
+    colors = VariantItem.objects.select_related(
+            'variant'
+        ).only(
+            'title',
+            'content',
+            'variant__name'
+        ).filter(
+            variant__name='Color'
+        ).values(
+            'title',
+            'content'
+        ).distinct()
+    
+    # sizes = VariantItem.objects.filter(variant__name='Size').values('title', 'content').distinct()
+    sizes = VariantItem.objects.select_related(
+            'variant'
+        ).only(
+            'title',
+            'content',
+            'variant__name'
+        ).filter(
+            variant__name='Size'
+        ).values(
+            'title',
+            'content'
+        ).distinct()
+    
     item_display = [
         {"id": "1", "value": 1},
         {"id": "2", "value": 2},
@@ -303,7 +406,17 @@ def category_detail(request, slug):
 
     if request.user.is_authenticated:
         # Get all product IDs in the user's wishlist
-        wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+        # wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+        wishlist_product_ids = list(
+                Wishlist.objects.only(
+                    'product_id'
+                ).filter(
+                    user=request.user
+                ).values_list(
+                    'product_id',
+                    flat=True
+                )
+            )
     else:
         wishlist_product_ids = []
     
@@ -330,10 +443,43 @@ def category_detail(request, slug):
 
         # Product Detail Page
 def product_details(request, slug):
-    product = Product.objects.get(status='Published', slug=slug)
-    related_products = Product.objects.filter(category=product.category, status='Published').exclude(id=product.id)
+    # product = Product.objects.get(status='Published', slug=slug)
+    product = Product.objects.select_related(
+            'category',
+            
+        ).prefetch_related(
+            'gallery_set',
+            'variants',
+            'reviews'
+        ).annotate(
+            avg_rating=Avg('reviews__rating')
+        ).get(
+            status='Published',
+            slug=slug
+        )
+
+    # related_products = Product.objects.filter(category=product.category, status='Published').exclude(id=product.id)
+    related_products = Product.objects.select_related(
+                'category',
+               
+            ).only(
+                'id',
+                'name',
+                'slug',
+                'price',
+                'image',
+                'category__title',
+                'vendor__username'
+            ).annotate(
+                avg_rating=Avg('reviews__rating')
+            ).filter(
+                category=product.category,
+                status='Published'
+            ).exclude(
+                id=product.id
+            )[:8]
     # p_images = Gallery.objects.filter(product=product)
-    review_count = Review.objects.filter(product=product).count()
+    review_count = product.reviews.count()
     product_stock_range = range(1, product.stock + 1) # 1,2,3
 
 
@@ -715,9 +861,22 @@ def apply_coupon(request, oid):
 @login_required(login_url='userauths:sign_in')
 def checkout(request, oid):
     
-    order =  Order.objects.get(oid=oid)
-
-
+    # order =  Order.objects.get(oid=oid)
+    order = order = (
+        Order.objects
+        .select_related('address', 'customer')
+        .prefetch_related(
+            'coupons',
+            Prefetch(
+                'orderitem_set',
+                queryset=OrderItem.objects.select_related(
+                    'product',
+                    'product__vendor'
+                )
+            )
+        )
+        .get(oid=oid)
+    )
     amount_in_inr = convert_usd_to_inr(order.total)
     amount_in_ngn = convert_usd_to_ngn(order.total)
     amount_in_kobo = convert_usd_to_kobo(order.total)

@@ -148,7 +148,14 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
     def product_image(self):
-        return mark_safe('<img src= "%s" width="50" height="50" />' % (self.image.url))
+        if self.image:
+            return mark_safe(
+                f'<img src="{self.image.url}" width="50" height="50" />'
+            )
+
+        return "No Image"
+    # def product_image(self):
+    #     return mark_safe('<img src= "%s" width="50" height="50" />' % (self.image.url))
     
 
     def average_rating(self):

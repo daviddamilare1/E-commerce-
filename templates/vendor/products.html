@@ -18,7 +18,12 @@
                                     <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
                                         <div class="shop_thumb position-relative">
                                             <a class="card-img-top d-block overflow-hidden" href="{% url 'core:details' p.slug %}">
-                                                <img class="card-img-top" src="{{p.image.url}}" style="max-width: fit-content; max-height: fit-content; object-fit: cover" alt="..." />
+                                                {% if p.image %}
+                                                    <img class="card-img-top" src="{{p.image.url}}" style="max-width: fit-content; max-height: fit-content; object-fit: cover" alt="..." />
+                                                {% else %}
+                                                    <img src="{% static 'assets/img/pfp.webp' %}" class="card-img-top" style="max-width: 100%; max-height: 100%; object-fit: cover" alt="" />
+                                                {% endif %}
+                                                
                                             </a>
                                         </div>
                                     </div>

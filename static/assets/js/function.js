@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 
     // Call on page load
-    syncButtonStatesWithServer();
+    // syncButtonStatesWithServer();
 // ########################################################################
     
  
